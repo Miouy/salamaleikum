@@ -12,8 +12,13 @@ body {
 }
 
 .header__title {
+    display: flex;
     color: #ffffff;
     font-size: 18px;
+}
+
+.title__text {
+    margin-left: 5px;
 }
 
 .select {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/register_style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <select name="lang" id="lang" class="lang select">
+                <option value="1">Английский</option>
+                <option value="2">Казахский</option>
+                <option value="3">Русский</option>
+            </select>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="main__title">
+            <h1 class="title__text">ISP</h1>
+        </div>
+        <div class="register_form">
+            <form action="" method="post">
+                <input type="text" class="iin register__input" placeholder="IIN">
+                <input type="text" class="re__iin register__input" placeholder="Retype IIN">
+                <input type="email" class="email register__input" placeholder="Email">
+                <input type="email" class="re__email register__input" placeholder="Retype Email">
+                <input type="tel" class="phone register__input" placeholder="Telephone" pattern="[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}">
+                <input type="text" class="surname register__input" placeholder="Surname">
+                <input type="text" class="name register__input" placeholder="Name">
+                <input type="text" class="patronymic register__input" placeholder="Patronymic">
+                <input type="password" class="password register__input" placeholder="Password">
+                <input type="password" class="re__password register__input" placeholder="Retype Password">
+                <div class="form__buttons">
+                    <button class="form__button">Back</button>
+                    <button class="form__button">Register</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <h6 class="footer__title">Technical support ISP</h6>
+        <h6 class="footer__email">Email: <a href="#">isp@gmail.com</a></h6>
+    </footer>
+</body>
+</html>
