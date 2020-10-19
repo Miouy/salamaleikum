@@ -96,3 +96,31 @@ table tr td {
     margin: 10px 0;
 }
 
+.add__btn{
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top:15px;
+}
+
+.elective_info{
+    position: relative;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.elective_info_text{
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
