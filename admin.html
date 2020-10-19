@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="css/admin_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+</head>
+<body>
+    <header class="header">
+        <div class="header__title">
+            <i class="fas fa-bars"></i>
+            <h3 class="title__text">ISP</h3>
+        </div>
+        <nav class="header__nav">
+            <select name="lang" id="lang" class="lang select">
+                <option value="1">Английский</option>
+                <option value="2">Казахский</option>
+                <option value="3">Русский</option>
+            </select>
+            <select name="profile" id="profile" class="profile select">
+                <option value="">Профиль</option>
+                <option value="">Выйти</option>
+            </select>
+        </nav>
+    </header>
+    <section class="main">
+        <div class="main__tittle">
+            <p>Admin panel</p>
+        </div>
+        <div class="breadcrumb" style="margin: 10px 0;">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Admin panel</a></li>
+                <li class="breadcrumb-item active">Disciplines</li>
+            </ol>
+        </div>
+        <div>
+            <table class="table table-bordered">
+                <tr class="font-weight-bold">
+                    <th>Код дисциплины</th>
+                    <th>Наименование дисциплины</th>
+                    <th>Тип дисциплины</th>
+                    <th>Преподователь дисциплины</th>
+                    <th>Семестр</th>
+                    <th>Курс</th>
+                    <th>Учебный год</th>
+                    <th>Кол-во кредитов</th>
+                    <th>Действие</th>
+                </tr>
+                <tr>
+                    <td>FK</td>
+                    <td>Физическая культура</td>
+                    <td>Теоретическое Обучение</td>
+                    <td>Ауганбаев Акжол</td>
+                    <td>Осень</td>
+                    <td>1</td>
+                    <td>2018-2019</td>
+                    <td>5</td>
+                    <td><a href="#" class="edit__button">Изменить</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <footer class="footer">
+        <h6 class="footer__title">Technical support ISP</h6>
+        <h6 class="footer__email">Email: <a href="#">isp@gmail.com</a></h6>
+    </footer>
+</body>
+</html>
