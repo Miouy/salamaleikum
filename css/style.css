@@ -10,7 +10,8 @@ body {
 }
 
 .main{
-    margin: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 .table{

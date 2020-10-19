@@ -1,7 +1,7 @@
 @import url("reset.css");
 
 .header {
-    background-color: #000000;
+    background-color: #222222;
     display: flex;
     justify-content: space-between;
     padding: 15px;
@@ -9,6 +9,7 @@
 
 .header__title {
     display: flex;
+    align-items: center;
     color: #ffffff;
     font-size: 18px;
 }
@@ -18,11 +19,12 @@
 }
 
 .select {
+    font-size: 14px;
+    padding: 5px;
     outline: none;
     background: none;
     border: none;
     color: #999999;
-    background-color: #000000;
 }
 
 .select:hover {
