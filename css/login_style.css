@@ -1,7 +1,9 @@
 @import url("reset.css");
+@import url("header.css");
+@import url("footer.css");
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
     background-color: #222222;
 }
 
