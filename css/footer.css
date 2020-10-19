@@ -3,10 +3,12 @@
 .footer {
     color: #999999;
     font-size: 12px;
-    padding: 20px;
     text-align: center;
     position: fixed;
+    padding-bottom: 10px;
     bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .footer__email {
