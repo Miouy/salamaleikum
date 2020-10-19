@@ -105,3 +105,19 @@ table tr td {
     text-decoration: underline;
     color: #000000;
 }
+
+.add{
+    margin-bottom: 10px;
+}
+
+.add__button {
+    text-decoration: none;
+    color: #999999;
+    padding-left: 10px;
+}
+
+
+.add__button:hover {
+    text-decoration: underline;
+    color: #000000;
+}
