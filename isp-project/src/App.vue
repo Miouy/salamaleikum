@@ -1,6 +1,15 @@
 <template>
   <div>
     <SemesterISP/>
+    <h1>Manager</h1>
+    <div>
+      <router-link :to="{name: 'Specialties'}">Specialties</router-link>
+    </div>
+    <div>
+      <router-link :to="{name: 'Groups'}">Groups</router-link>
+    </div>
+    <router-view></router-view>
+
   </div>
 </template>
 
@@ -14,6 +23,7 @@ export default {
     SemesterISP,
   }
 }
+
 </script>
 
 <style>
