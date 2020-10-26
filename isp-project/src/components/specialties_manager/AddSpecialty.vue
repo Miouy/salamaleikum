@@ -85,6 +85,7 @@
                     font-size: 18px;
                     padding: 5px;
                     box-sizing: border-box;
+                    width: 100%;
                 }
             }
 

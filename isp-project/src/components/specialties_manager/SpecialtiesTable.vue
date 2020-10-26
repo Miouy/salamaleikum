@@ -6,6 +6,7 @@
                     <th>Code</th>
                     <th>Name</th>
                     <th>Courses quantity</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,10 +29,29 @@
         components: {
             SpecialtyItem,
         },
-        props: {
-            specialties: {
-                type: Array,
-                required: true,
+        data(){
+            return {
+                specialties: [
+                    {
+                        specialty_id: 1,
+                        specialty_code: "CSSE",
+                        specialty_name: "Computer Science and Software Engineering",
+                        specialty_courses_quantity: 4
+                    },
+                    {
+                        specialty_id: 2,
+                        specialty_code: "IS",
+                        specialty_name: "Information systems",
+                        specialty_courses_quantity: 4
+                    },
+                    {
+                        specialty_id: 3,
+                        specialty_code: "CS",
+                        specialty_name: "Computer Science",
+                        specialty_courses_quantity: 4
+                    }
+                ],
+                last_index: 4,
             }
         }
     }

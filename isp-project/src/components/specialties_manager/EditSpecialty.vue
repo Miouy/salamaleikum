@@ -25,16 +25,39 @@
         name: "EditSpecialty",
         data(){
             return {
-                specialty_code: this.specialty.specialty_code,
-                specialty_name: this.specialty.specialty_name,
-                specialty_courses_quantity: this.specialty.specialty_courses_quantity,
+                specialtyId: this.$route.params.specialtyId,
+                specialties: [
+                    {
+                        specialty_id: 1,
+                        specialty_code: "CSSE",
+                        specialty_name: "Computer Science and Software Engineering",
+                        specialty_courses_quantity: 4
+                    },
+                    {
+                        specialty_id: 2,
+                        specialty_code: "IS",
+                        specialty_name: "Information systems",
+                        specialty_courses_quantity: 4
+                    },
+                    {
+                        specialty_id: 3,
+                        specialty_code: "CS",
+                        specialty_name: "Computer Science",
+                        specialty_courses_quantity: 4
+                    }
+                ],
+                specialty: {},
+                specialty_code: '',
+                specialty_name: '',
+                specialty_courses_quantity: '',
             }
         },
-        props: {
-            specialty: {
-                type: Object,
-                required: true,
-            }
+        created() {
+            let specialtyIndex = this.specialties.findIndex(s => s.specialty_id === Number.parseInt(this.specialtyId));
+            this.specialty = this.specialties[specialtyIndex];
+            this.specialty_code = this.specialty.specialty_code;
+            this.specialty_name = this.specialty.specialty_name;
+            this.specialty_courses_quantity = this.specialty.specialty_courses_quantity;
         },
         methods: {
             saveSpecialty(){
