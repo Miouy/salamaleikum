@@ -1,12 +1,15 @@
 <template>
     <div class="menu-item" @click="isOpen = !isOpen">
-      <a href="#">
+      <a href="#" v-if="course==null">
         {{ title }}
+      </a>
+      <a href="#" v-else>
+        {{ course.title }}
       </a>
       <i class="fas fa-caret-down"></i>
       <transition name="fade" appear>
         <div class="sub-menu" v-if="isOpen">
-          <div v-for="(item,index) in items" :key="index" class="menu-item">
+          <div v-for="(item,index) in items" :key="index" class="menu-item" @click="course=item">
             <a :href="item.link">{{ item.title }}</a>
           </div>
         </div>
@@ -20,6 +23,7 @@
       data(){
         return{
           isOpen:false,
+          course:null,
         }
       },
       props:['title','items'],     
@@ -33,6 +37,8 @@
   .menu-item {
     display: block;
     position: relative;
+    border:1px solid #009879;
+    
     i{
       width: 10px;
       margin-left: 10px;
@@ -52,18 +58,22 @@
       width: 100%;
       border-radius: 0px 0px 5px 5px;
       border:1px solid #009879;
-      margin: -1px;
+      margin:0 -1px;
     
       a{
         text-decoration: none;
         color: #00382d;
         width: 100%;
       }
-    }
 
-    &:hover{
-      color: #fff;
-      background-color: rgb(169, 231, 219);
+      & .menu-item:hover{
+        color: #fff;
+        background-color: rgb(169, 231, 219);
+      }
+
+      & .menu-item{
+        border:none;
+      }
     }
   }
 

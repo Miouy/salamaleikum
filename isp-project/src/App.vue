@@ -1,6 +1,7 @@
 <template>
   <div>
-    <SemesterISP/>
+    <!-- <SemesterISP/> -->
+    <EnrollDisciolines/>
     <h1>Manager</h1>
     <div>
       <router-link :to="{name: 'Specialties'}">Specialties</router-link>
@@ -15,12 +16,14 @@
 
 <script>
 
-import SemesterISP from './components/student/SemesterISP'
+// import SemesterISP from './components/student/SemesterISP'
+import EnrollDisciolines from './components/enroll_disciplines/EnrollDisciplines'
 
 export default {
   name: 'App',
   components: {
-    SemesterISP,
+    // SemesterISP,
+    EnrollDisciolines
   }
 }
 

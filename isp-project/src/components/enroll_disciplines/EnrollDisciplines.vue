@@ -6,72 +6,84 @@
         <div class="breadcrumb" style="margin: 10px 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Рабочая область</a></li>
-                <li class="breadcrumb-item active">Индивидуальный учебный план</li>
+                <li class="breadcrumb-item active">Запись на курсы</li>
             </ol>
         </div>
-        <div>
-            <Dropdown title="Courses" :items="courses"/>
-        </div>
-        <div style="margin:30px 0">
-            <ul class="semester-nav">
-                <li class="one-semester">
-                    <a href="#" @click="table='DisciplinesTable'" :class="{'active':table=='DisciplinesTable'}">1 семестр</a>
-                </li>
-                <li class="one-semester">
-                    <a href="#" @click="table='DisciplinesTable2'" :class="{'active':table=='DisciplinesTable2'}">2 семестр</a>
-                </li>
-                <li class="one-semester">
-                    <a href="#" :class="{'active':table=='Retakes'}" @click="table='Retakes'">Летний семестр</a>
-                </li>
-            </ul>
-        </div>
-        <DisciplinesTable v-if="table=='DisciplinesTable'"/>
-        <DisciplinesTable v-else-if="table=='DisciplinesTable2'"/>
-        <Retakes v-else-if="table=='Retakes'"/>
+        <EnrollTable 
+        :disciplines=disciplines
+        :electives=electives
+        :enrolled=enrolled
+        />
     </div>
 </template>
 
 <script>
 
-import DisciplinesTable from './DisciplinesTable'
-import Retakes from './Retakes'
-import Dropdown from './Dropdown'
+import EnrollTable from './EnrollTable'
 
 export default {
     data(){
         return{
-            table:'DisciplinesTable',
-            courses:[
+            disciplines: [
                 {
-                    title:'1 курс',
-                    link:'#'
+                    discipline_code: 'AP 1206',
+                    discipline_name: 'Algorithmization and Programming',
+                    discipline_type: 'Теоретическое Обучение',
+                    semester: 1,
+                    num_credits:7,
+                    is_elective:false
                 },
                 {
-                    title:'2 курс',
-                    link:'#'
+                    discipline_code: 'Math 1203',
+                    discipline_name: 'Mathematics',
+                    discipline_type: 'Теоретическое Обучение',
+                    semester: 1,
+                    num_credits: 5,
+                    is_elective:false
                 },
                 {
-                    title:'3 курс',
-                    link:'#'
+                    discipline_code: 'Robo175',
+                    discipline_name: 'Robotics',
+                    discipline_type: 'Теоретическое Обучение',
+                    semester: 1,
+                    num_credits:7,
+                    is_elective:false
+                },
+            ],
+            electives:[
+                {
+                    discipline_code: 'Mus86',
+                    discipline_name: 'Music',
+                    discipline_type: 'Теоретическое Обучение',
+                    semester: 1,
+                    num_credits:7,
+                    is_elective:true
                 },
                 {
-                    title:'4 курс',
-                    link:'#'
+                    discipline_code: 'Draw7485',
+                    discipline_name: 'ART',
+                    discipline_type: 'Теоретическое Обучение',
+                    semester: 1,
+                    num_credits:7,
+                    is_elective:true
                 },
-            ]
+                {
+                    discipline_code: 'Prog',
+                    discipline_name: 'Programming',
+                    discipline_type: 'Теоретическое Обучение',
+                    semester: 1,
+                    num_credits:7,
+                    is_elective:true
+                },
+            ],
+            enrolled:[],
         }
     },
     components:{
-        DisciplinesTable,
-        Retakes,
-        Dropdown
-    },
-    methods: {
-        methodToRunOnSelect(payload) {
-            this.object = payload;
-        }
+        EnrollTable,
     }
-}  
+
+}
 
 </script>
 
@@ -187,7 +199,4 @@ export default {
         border-radius: 5px 5px 0px 0px;
         
     }
-
-
-
 </style>

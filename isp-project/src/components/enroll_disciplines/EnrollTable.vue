@@ -1,56 +1,64 @@
 <template>
-    <table class="discipline-table">
+        <table class="discipline-table">
         <thead>
             <tr>
                 <th>Код дисциплины</th>
                 <th>Наименование дисциплины</th>
                 <th>Тип дисциплины</th>
-                <th>Преподователь дисциплины</th>
                 <th>Семестр</th>
                 <th>Кол-во кредитов</th>
-                <th>РК 1</th>
-                <th>РК 2</th>
-                <th>Экзамен</th>
-                <th>Итог. оценка</th>
-                <th>Оценка (букв.)</th>
-                <th>GPA</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td colspan="100%" class="semester-title">1 курс летний семестр</td>
+                <td colspan="100%" class="semester-title">2 курс 1 семестр</td>
             </tr>
-            <DisciplineItem
-                v-for="(discipline,index) in retakes"
+            
+            <!-- <DisciplineItem
+                v-for="(discipline,index) in disciplines"
                 :key="index"
                 :discipline=discipline
                 :index=index
+            /> -->
+            
+            <EnrollItem 
+                v-for="(discipline,index) in disciplines" 
+                :key="index"
+                :discipline=discipline
+                :index=index
+                :enrolled=false
             />
+            <EnrollItem 
+                v-for="(discipline,index) in enrolled" 
+                :key="index"
+                :discipline=discipline
+                :index=index
+                :enrolled=true
+            />
+
         </tbody>
     </table>
 </template>
 
 <script>
 
-import DisciplineItem from './DisciplineItem'
+import EnrollItem from './EnrollItem'
 
 export default {
-    name: 'RetakesTable',
     data(){
         return{
             
         }
     },
-    props:{
-        retakes:Array,
-        
-    },
+    props:['disciplines','electives','enrolled'],
     components:{
-        DisciplineItem,
+        EnrollItem
     },
-    methods:{
+    methods: {
 
     },
+
 }
 </script>
 
@@ -73,6 +81,7 @@ export default {
         }
 
         thead {
+            
             tr {
                 background-color: #009879;
                 color: #ffffff;
