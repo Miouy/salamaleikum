@@ -3,10 +3,19 @@
     <SemesterISP/>
     <h1>Manager</h1>
     <div>
-      <router-link :to="{name: 'Specialties'}">Specialties</router-link>
+      <router-link to="specialties">Specialties</router-link>
     </div>
     <div>
-      <router-link :to="{name: 'Groups'}">Groups</router-link>
+      <router-link to="groups">Groups</router-link>
+    </div>
+    <div>
+      <router-link to="disciplines">Disciplines</router-link>
+    </div>
+    <div>
+      <router-link to="advisors">Advisors</router-link>
+    </div>
+    <div>
+      <router-link to="students">Students</router-link>
     </div>
     <router-view></router-view>
 

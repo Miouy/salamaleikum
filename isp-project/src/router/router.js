@@ -7,6 +7,16 @@ import AddGroup from "../components/groups_manager/AddGroup";
 import EditGroup from "../components/groups_manager/EditGroup";
 import Specialties from "../views/Specialties";
 import Groups from "../views/Groups";
+import Disciplines from "../views/Disciplines";
+import DisciplinesTable from "../components/disciplines_manager/DisciplinesTable";
+import AddDiscipline from "../components/disciplines_manager/AddDiscipline";
+import EditDiscipline from "../components/disciplines_manager/EditDiscipline";
+import Advisors from "../views/Advisors";
+import AdvisorsTable from "../components/advisors_manager/AdvisorsTable";
+import AddAdvisor from "../components/advisors_manager/AddAdvisor";
+import EditAdvisor from "../components/advisors_manager/EditAdvisor";
+import Students from "../views/Students";
+import StudentsTable from "../components/students_manager/StudentsTable";
 
 const routes = [
     // Specialties
@@ -14,42 +24,101 @@ const routes = [
         path: '/specialties',
         name: 'Specialties',
         component: Specialties,
-    },
-    {
-        path: '/specialties/all',
-        name: 'SpecialtiesTable',
-        component: SpecialtiesTable,
-    },
-    {
-        path: '/specialties/add',
-        name: 'AddSpecialty',
-        component: AddSpecialty,
-    },
-    {
-        path: '/specialties/:specialtyId/edit',
-        name: 'EditSpecialty',
-        component: EditSpecialty,
+        children: [
+            {
+                path: '',
+                component: SpecialtiesTable,
+            },
+            {
+                path: 'add',
+                component: AddSpecialty,
+            },
+            {
+                path: ':specialtyId/edit',
+                name: 'EditSpecialty',
+                component: EditSpecialty,
+            }
+        ]
     },
     //Groups
     {
         path: '/groups',
         name: 'Groups',
         component: Groups,
+        children: [
+            {
+                path: '',
+                component: GroupsTable,
+            },
+            {
+                path: 'add',
+                component: AddGroup,
+            },
+            {
+                path: ':groupId/edit',
+                name: 'EditGroup',
+                component: EditGroup,
+            }
+        ]
     },
+    //Disciplines
     {
-        path: '/groups/all',
-        name: 'GroupsTable',
-        component: GroupsTable,
+        path: '/disciplines',
+        name: 'Disciplines',
+        component: Disciplines,
+        children: [
+            {
+                path: '',
+                component: DisciplinesTable,
+            },
+            {
+                path: 'add',
+                component: AddDiscipline,
+            },
+            {
+                path: ':disciplineId/edit',
+                name: 'EditDiscipline',
+                component: EditDiscipline,
+            }
+        ]
     },
+    //Advisors
     {
-        path: '/groups/add',
-        name: 'AddGroup',
-        component: AddGroup,
+        path: '/advisors',
+        name: 'Advisors',
+        component: Advisors,
+        children: [
+            {
+                path: '',
+                component: AdvisorsTable,
+            },
+            {
+                path: 'add',
+                component: AddAdvisor,
+            },
+            {
+                path: ':advisorId/edit',
+                name: 'EditAdvisor',
+                component: EditAdvisor,
+            }
+        ]
     },
+    //Students
     {
-        path: '/groups/:groupId/edit',
-        name: 'EditGroup',
-        component: EditGroup,
+        path: '/students',
+        name: 'Students',
+        component: Students,
+        children: [
+            {
+                path: '',
+                component: StudentsTable,
+            },
+            {
+                path: ':advisorId/edit',
+                name: 'EditAdvisor',
+                component: EditAdvisor,
+            }
+        ]
     },
 ]
 
