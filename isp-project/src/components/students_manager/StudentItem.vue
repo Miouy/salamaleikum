@@ -1,41 +1,54 @@
 <template>
-    <tr class="discipline-row">
-        <td>{{ discipline.discipline_code }}</td>
-        <td>{{ discipline.discipline_name }}</td>
-        <td>{{ discipline.discipline_type }}</td>
-        <td>{{ discipline.discipline_teacher }}</td>
-        <td>{{ discipline.semester }}</td>
-        <td>{{ discipline.num_credits }}</td>
+    <tr class="student-row">
+        <td>{{ student.student_id }}</td>
+        <td>{{ student.student_iin }}</td>
+        <td>{{ student.student_email }}</td>
+        <td>{{ student.student_telephone }}</td>
+        <td>{{ student.student_surname }}</td>
+        <td>{{ student.student_name }}</td>
+        <td>{{ student.student_patronymic }}</td>
+        <td>{{ student.student_password }}</td>
+        <td>{{ student.student_group.group_name }}</td>
         <td><button type="button" @click.prevent="goEdit">Edit</button></td>
     </tr>
 </template>
 
 <script>
     export default {
-        name: "DisciplineItem",
+        name: "StudentItem",
+        data(){
+            return {
+
+            }
+        },
         props:{
-            discipline:{
+            student:{
                 type:Object,
-                required:true
+                required:true,
             },
-            index: Number
         },
         methods: {
             goEdit(){
-                this.$router.push({name: 'EditDiscipline', params: {disciplineId: this.discipline.discipline_id}});
+                this.$router.push({name: 'EditStudent', params: {studentId: this.student.student_id}});
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .discipline-row {
+    .student-row {
         &:hover {
             color: #009879;
         }
 
         td {
             padding: 12px 15px;
+
+            p {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
 
             button {
                 color: #009879;

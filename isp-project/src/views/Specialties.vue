@@ -2,7 +2,7 @@
     <div>
         <div>
             <h1 class="specialties-title">Specialties</h1>
-            <router-link to="/specialties/all">All</router-link>
+            <router-link to="/specialties/">All</router-link>
             <router-link to="/specialties/add">Add</router-link>
         </div>
         <router-view></router-view>

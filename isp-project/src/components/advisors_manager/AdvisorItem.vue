@@ -1,41 +1,48 @@
 <template>
-    <tr class="discipline-row">
-        <td>{{ discipline.discipline_code }}</td>
-        <td>{{ discipline.discipline_name }}</td>
-        <td>{{ discipline.discipline_type }}</td>
-        <td>{{ discipline.discipline_teacher }}</td>
-        <td>{{ discipline.semester }}</td>
-        <td>{{ discipline.num_credits }}</td>
+    <tr class="advisor-row">
+        <td>{{ advisor.advisor_id }}</td>
+        <td>{{ advisor.advisor_name }}</td>
+        <td>
+            <p v-for="group in advisor.advisor_groups" :key="group.group_id">{{group.group_name}}</p>
+        </td>
         <td><button type="button" @click.prevent="goEdit">Edit</button></td>
     </tr>
 </template>
 
 <script>
     export default {
-        name: "DisciplineItem",
+        name: "AdvisorItem",
         props:{
-            discipline:{
+            advisor:{
                 type:Object,
                 required:true
             },
-            index: Number
+        },
+        created() {
+            console.log(this.advisor.groups);
         },
         methods: {
             goEdit(){
-                this.$router.push({name: 'EditDiscipline', params: {disciplineId: this.discipline.discipline_id}});
+                this.$router.push({name: 'EditAdvisor', params: {advisorId: this.advisor.advisor_id}});
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .discipline-row {
+    .advisor-row {
         &:hover {
             color: #009879;
         }
 
         td {
             padding: 12px 15px;
+
+            p {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
 
             button {
                 color: #009879;

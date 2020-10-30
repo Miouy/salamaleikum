@@ -1,9 +1,8 @@
 <template>
     <div>
         <div>
-            <h1 class="groups-title">Groups</h1>
-            <router-link to="/groups/">All</router-link>
-            <router-link to="/groups/add">Add</router-link>
+            <h1 class="students-title">Students</h1>
+            <router-link to="/students/">All</router-link>
         </div>
         <router-view></router-view>
     </div>
@@ -11,12 +10,12 @@
 
 <script>
     export default {
-        name: "Groups"
+        name: "Students"
     }
 </script>
 
-<style scoped>
-    .groups-title {
+<style lang="scss" scoped>
+    .advisors-title {
         text-align: center;
         font-family: monospace;
     }

@@ -7,11 +7,10 @@
             </div>
             <div class="group-field">
                 <label for="group_specialty">Group Specialty</label>
-                <select name="group_specialty" id="group_specialty" v-model="group_specialty">
-                    <option v-for="(option, index) in specialty_options"
-                            :value="index"
+                <select name="group_specialty" id="group_specialty" v-model="group_specialty.specialty_id" @change="setGroupValues">
+                    <option v-for="option in specialty_options"
                             :key="option.specialty_id"
-                            :selected="option.specialty_id === group.group_specialty.specialty_id"
+                            :value="option.specialty_id"
                     >{{ option.specialty_name }}</option>
                 </select>
             </div>
@@ -29,7 +28,7 @@
             return {
                 group: {},
                 group_name: '',
-                group_specialty: '',
+                group_specialty: {},
                 groupId: this.$route.params.groupId,
                 groups: [
                     {
@@ -91,12 +90,18 @@
                 this.group = this.groups[groupIndex];
                 this.group_name = this.group.group_name;
                 this.group_specialty = this.group.group_specialty;
+                console.log(this.group_specialty)
             }
-            this.specialty_options.forEach(option => console.log(option.specialty_id));
         },
         methods: {
             editGroup(){
 
+            },
+            setGroupValues(){
+                let specialtyIndex = this.specialty_options.findIndex(s => s.specialty_id === this.group_specialty.specialty_id);
+                if(specialtyIndex !== -1){
+                    this.group_specialty = this.specialty_options[specialtyIndex];
+                }
             }
         }
     }

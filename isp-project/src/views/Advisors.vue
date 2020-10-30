@@ -1,9 +1,9 @@
 <template>
     <div>
         <div>
-            <h1 class="discipline-title">Disciplines</h1>
-            <router-link to="/disciplines/">All</router-link>
-            <router-link to="/disciplines/add">Add</router-link>
+            <h1 class="advisors-title">Advisors</h1>
+            <router-link to="/advisors/">All</router-link>
+            <router-link to="/advisors/add">Add</router-link>
         </div>
         <router-view></router-view>
     </div>
@@ -11,12 +11,12 @@
 
 <script>
     export default {
-        name: "Disciplines"
+        name: "Advisors"
     }
 </script>
 
 <style lang="scss" scoped>
-    .discipline-title {
+    .advisors-title {
         text-align: center;
         font-family: monospace;
     }
