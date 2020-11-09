@@ -5,7 +5,7 @@
         <td>{{ discipline.discipline_type }}</td>
         <td>{{ discipline.semester }}</td>
         <td>{{ discipline.num_credits }}</td>
-        <td v-if="discipline.is_elective && enrolled"> <button>-</button> </td>
+        <td v-if="discipline.is_elective && enrolled"> <button @click="graduate">-</button> </td>
         <td v-else></td>
     </tr>
 </template>
@@ -13,10 +13,11 @@
 <script>
 export default {
     props:['discipline','index','enrolled'],
-
-    methods:{
-        
-    }
+    methods: {
+        graduate(){
+            this.$emit('graduate',this.discipline.discipline_code);
+        }
+    },
 }
 </script>
 

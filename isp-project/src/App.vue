@@ -4,6 +4,12 @@
     <EnrollDisciolines/>
     <h1>Manager</h1>
     <div>
+      <router-link to="isp">ISP</router-link>
+    </div>
+    <div>
+      <router-link to="enroll">Enroll To Disciolines</router-link>
+    </div>
+    <div>
       <router-link to="specialties">Specialties</router-link>
     </div>
     <div>
@@ -26,13 +32,13 @@
 <script>
 
 // import SemesterISP from './components/student/SemesterISP'
-import EnrollDisciolines from './components/enroll_disciplines/EnrollDisciplines'
+// import EnrollDisciolines from './components/enroll_disciplines/EnrollDisciplines'
 
 export default {
   name: 'App',
   components: {
     // SemesterISP,
-    EnrollDisciolines
+    // EnrollDisciolines
   }
 }
 

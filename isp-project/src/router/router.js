@@ -17,6 +17,8 @@ import AddAdvisor from "../components/advisors_manager/AddAdvisor";
 import EditAdvisor from "../components/advisors_manager/EditAdvisor";
 import Students from "../views/Students";
 import StudentsTable from "../components/students_manager/StudentsTable";
+import SemesterISP from '../components/student/SemesterISP'
+import EnrollDisciolines from '../components/enroll_disciplines/EnrollDisciplines'
 
 const routes = [
     // Specialties
@@ -120,6 +122,18 @@ const routes = [
             }
         ]
     },
+    //SemesterISP
+    {
+        path: '/isp',
+        name: 'ISP',
+        component: SemesterISP,
+    },
+    //EnrollDisciolines
+    {
+        path: '/enroll',
+        name: 'EnrollDisciolines',
+        component: EnrollDisciolines,
+    }
 ]
 
 let router = createRouter({

@@ -10,9 +10,38 @@
             </ol>
         </div>
         <EnrollTable 
-        :disciplines=disciplines
-        :electives=electives
-        :enrolled=enrolled
+            :disciplines="disciplines"
+            :electives="electives"
+            :enrolled="enrolled"
+            @graduate="graduate"
+        />
+        <div class="retakes-info" :style="{'background-color':credits<cal_credits()? '#cfe9e4;':'#e9cfd4'}">
+            <div class="info-block">
+                <span class="title">Требуемый число кредитов не меньше: </span>
+                <span class="content">&nbsp;{{ credits }}</span>
+            </div>
+            <div v-if="credits>cal_credits()" class="info-block">
+                <span class="title">
+                    >
+                </span>
+            </div>
+            <div v-else class="info-block">
+                <span class="title">
+                    >
+                </span>
+            </div>
+            <div class="info-block">
+                <span class="title">Число кредитов:{{ cal_credits() }}</span>
+                <span class="content">&nbsp;</span>
+            </div>
+        </div>
+        <hr/>
+        <ToEnrollTable
+            :disciplines="disciplines"
+            :electives="electives"
+            :enrolled="enrolled"
+            :en_el="en_el"
+            @enroll="enroll"
         />
     </div>
 </template>
@@ -20,6 +49,7 @@
 <script>
 
 import EnrollTable from './EnrollTable'
+import ToEnrollTable from './ToEnrollTable'
 
 export default {
     data(){
@@ -77,11 +107,52 @@ export default {
                 },
             ],
             enrolled:[],
+            en_el: [],
+            credits: 31,
         }
     },
     components:{
-        EnrollTable,
-    }
+        EnrollTable,ToEnrollTable,
+    },
+    created(){
+        this.com_elec();
+    },
+    methods: {
+        enroll(discipline_code){
+            // console.log("Discipline enroll "+discipline_code)
+            // console.log(this.electives.filter(obj => {return obj.discipline_code == discipline_code})[0]);
+            this.enrolled.push(this.electives.filter(obj => {return obj.discipline_code == discipline_code})[0]);
+            //console.log(" good "+ this.enrolled);
+            this.com_elec();
+        },
+
+        graduate(discipline_code){
+            this.enrolled.splice(this.enrolled.find(obj => {return obj.discipline_code == discipline_code}), 1);
+            this.com_elec();
+        },
+
+        com_elec(){
+            let res=[];
+            for(let i=0;i<this.electives.length;i++){
+                if(this.enrolled.indexOf(this.electives[i]) == -1){
+                    res.push(this.electives[i]);
+                }
+            }
+            this.en_el=res;
+        },
+
+        cal_credits(){
+            let c=0;
+            for(let i=0;i<this.disciplines.length;i++){
+                c+=this.disciplines[i].num_credits;
+            }
+            for(let i=0;i<this.enrolled.length;i++){
+                c+=this.enrolled[i].num_credits;
+            }
+            return c;
+        }
+
+    },
 
 }
 
@@ -199,4 +270,23 @@ export default {
         border-radius: 5px 5px 0px 0px;
         
     }
+
+    .retakes-info{
+        margin-top: 10px;
+        padding: 30px;
+        font-size: 20px;
+        font-weight: 700;
+        font-family: monospace;
+        background-color: #cfe9e4;
+        display: flex;
+        justify-content: space-around;
+        //cfe7e3
+        border-radius: 5px;
+
+        .info-block{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
 </style>

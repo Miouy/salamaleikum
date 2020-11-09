@@ -21,48 +21,47 @@
                 :discipline=discipline
                 :index=index
             /> -->
-
-            <EnrollItem 
-                v-for="(discipline,index) in disciplines" 
+            
+            <ToEnrollItem 
+                v-for="(elective,index) in en_el" 
                 :key="index"
-                :discipline=discipline
-                :index=index
-                :enrolled=false
+                :elective="elective"
+                :index="index"
+                :enrolled="false"
+                @enroll="enroll"
             />
-
-            <template v-if="enrolled.length!=0">
-                <EnrollItem 
-                v-for="(discipline,index) in this.enrolled" 
-                :key="index"
-                :discipline=discipline
-                :index=index
-                :enrolled=true
-                @graduate="graduate"
-                />
-            </template>
-
         </tbody>
     </table>
 </template>
 
 <script>
 
-import EnrollItem from './EnrollItem'
+import ToEnrollItem from './ToEnrollItem'
 
 export default {
     data(){
         return{
-            
+            elec: this.en_el,
         }
     },
-    props:['disciplines','electives','enrolled'],
+    props:{
+        disciplines: Array,
+        electives: Array,
+        enrolled: Array,
+        en_el:Array,
+    },
     components:{
-        EnrollItem
+        ToEnrollItem
+    },
+    created(){
+        console.log("en el");
+        console.log(this.en_el);
     },
     methods: {
-        graduate(discipline_code){
-            this.$emit('graduate',discipline_code);
-        }
+        enroll(discipline_code){
+            //console.log("table enroll "+discipline_code)
+            this.$emit('enroll',discipline_code);
+        },
     },
 
 }
