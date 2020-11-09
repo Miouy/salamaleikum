@@ -35,8 +35,8 @@
             </div>
             <div class="student-field">
                 <label for="student_group">Student Group</label>
-                <select name="student_group" id="student_group">
-
+                <select name="student_group" id="student_group" v-model="student.student_group.group_id" @change="setStudentGroup">
+                    <option v-for="group in groups" :value="group.group_id" :key="group.group_id">{{group.group_name}}</option>
                 </select>
             </div>
             <div class="edit-button">
@@ -49,6 +49,9 @@
 <script>
     export default {
         name: "EditStudent",
+        created() {
+            this.setStudent();
+        },
         data(){
             return {
                 student: {},
@@ -108,7 +111,7 @@
                     },
                     {
                         group_id: 2,
-                        group_name: "CSSE-1806K",
+                        group_name: "CSSE-1807K",
                         group_specialty: {
                             specialty_id: 2,
                             specialty_code: "IS",
@@ -118,7 +121,7 @@
                     },
                     {
                         group_id: 3,
-                        group_name: "CSSE-1806K",
+                        group_name: "CSSE-1808K",
                         group_specialty: {
                             specialty_id: 2,
                             specialty_code: "IS",
@@ -133,7 +136,13 @@
             setStudent(){
                 let studentIndex = this.students.findIndex(s => s.student_id === Number.parseInt(this.studentId));
                 if(studentIndex !== -1){
-                    console.log();
+                    this.student = this.students[studentIndex];
+                }
+            },
+            setStudentGroup(){
+                let groupIndex = this.groups.findIndex(g => g.group_id === this.student.student_group.group_id);
+                if(groupIndex !== -1){
+                    this.student.student_group = this.groups[groupIndex];
                 }
             }
         }

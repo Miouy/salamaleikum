@@ -19,6 +19,7 @@ import Students from "../views/Students";
 import StudentsTable from "../components/students_manager/StudentsTable";
 import SemesterISP from '../components/student/SemesterISP'
 import EnrollDisciolines from '../components/enroll_disciplines/EnrollDisciplines'
+import EditStudent from "../components/students_manager/EditStudent";
 
 const routes = [
     // Specialties
@@ -116,9 +117,9 @@ const routes = [
                 component: StudentsTable,
             },
             {
-                path: ':advisorId/edit',
-                name: 'EditAdvisor',
-                component: EditAdvisor,
+                path: ':studentId/edit',
+                name: 'EditStudent',
+                component: EditStudent,
             }
         ]
     },
