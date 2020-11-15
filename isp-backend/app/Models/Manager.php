@@ -10,4 +10,8 @@ class Manager extends Model
     use HasFactory;
 
     protected $primaryKey = 'manager_id';
+
+    public function specialties(){
+        return $this->hasMany('App\Models\Specialty');
+    }
 }
