@@ -10,4 +10,8 @@ class Advisor extends Model
     use HasFactory;
 
     protected $primaryKey = 'advisor_id';
+
+    public function groups(){
+        return $this->hasMany('App\Models\Group');
+    }
 }

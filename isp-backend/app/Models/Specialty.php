@@ -10,4 +10,12 @@ class Specialty extends Model
     use HasFactory;
 
     protected $primaryKey = 'specialty_id';
+
+    public function manager(){
+        return $this->belongsTo('App\Models\Manager');
+    }
+
+    public function courses(){
+        return $this->hasMany('App\Models\Course');
+    }
 }

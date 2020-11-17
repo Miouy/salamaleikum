@@ -10,4 +10,8 @@ class Course extends Model
     use HasFactory;
 
     protected $primaryKey = 'course_id';
+
+    public function specialty(){
+        return $this->belongsTo('App\Models\Specialty');
+    }
 }
