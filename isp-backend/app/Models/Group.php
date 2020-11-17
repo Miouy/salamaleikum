@@ -10,4 +10,19 @@ class Group extends Model
     use HasFactory;
 
     protected $primaryKey = 'group_id';
+
+    public function students()
+    {
+        return $this->hasMany('App\Models\Student');
+    }
+
+    public function advisor()
+    {
+        return $this->belongsTo('App\Models\Advisor');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
 }
