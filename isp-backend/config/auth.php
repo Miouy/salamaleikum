@@ -52,6 +52,12 @@ return [
             'provider' => 'advisors',
             'hash' => false,
         ],
+
+        'student' => [
+            'driver' => 'token',
+            'provider' => 'students',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -79,6 +85,10 @@ return [
         'advisors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Advisor::class,
+        ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
         ],
 
         // 'users' => [
@@ -112,6 +122,13 @@ return [
 
         'advisors' => [
             'provider' => 'advisors',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'students' => [
+            'provider' => 'students',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
