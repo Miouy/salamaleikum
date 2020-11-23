@@ -11,6 +11,10 @@ class Student extends Model
 
     protected $primaryKey = 'student_id';
 
+    protected $hidden = [
+        'student_password', 'remember_token',
+    ];
+
     public function group()
     {
         return $this->belongsTo('App\Models\Group');
