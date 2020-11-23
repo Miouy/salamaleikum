@@ -20,6 +20,7 @@ import StudentsTable from "../components/students_manager/StudentsTable";
 import SemesterISP from '../components/student/SemesterISP'
 import EnrollDisciolines from '../components/enroll_disciplines/EnrollDisciplines'
 import EditStudent from "../components/students_manager/EditStudent";
+import Authorization from "../views/Authorization";
 
 const routes = [
     // Specialties
@@ -120,6 +121,23 @@ const routes = [
                 path: ':studentId/edit',
                 name: 'EditStudent',
                 component: EditStudent,
+            }
+        ]
+    },
+    //Authorization
+    {
+        path: '/auth',
+        name: 'Authorization',
+        component: Authorization,
+        children: [
+            {
+                path: '',
+                component: StudentLogin,
+            },
+            {
+                path: 'register',
+                name: 'StudentRegister',
+                component: StudentRegister,
             }
         ]
     },

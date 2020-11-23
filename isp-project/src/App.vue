@@ -24,6 +24,9 @@
     <div>
       <router-link to="students">Students</router-link>
     </div>
+    <div>
+      <router-link to="auth">Authorization</router-link>
+    </div>
     <router-view></router-view>
 
   </div>

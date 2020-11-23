@@ -22,3 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('advisors', AdvisorController::class);
 Route::resource('managers', ManagerController::class);
+Route::resource('students', StudentController::class);
+Route::post('/register', StudentController::class);
