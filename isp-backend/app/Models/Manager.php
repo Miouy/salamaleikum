@@ -11,6 +11,15 @@ class Manager extends Model
 
     protected $primaryKey = 'manager_id';
 
+    protected $hidden = [
+        'manager_password', 'remember_token',
+    ];
+
+    public function getHiddenAttributes()
+    {
+        return $this->getHidden();
+    }
+
     public function specialties(){
         return $this->hasMany('App\Models\Specialty');
     }

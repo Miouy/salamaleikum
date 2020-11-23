@@ -17,9 +17,10 @@ class CreateManagersTable extends Migration
             $table->id('manager_id');
             $table->string('manager_name');
             $table->string('manager_surname');
-            $table->string('manager_email');
+            $table->string('manager_email')->unique();
             $table->string('manager_password');
             $table->string('manager_phone_num');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

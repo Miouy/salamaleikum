@@ -17,9 +17,10 @@ class CreateAdvisorsTable extends Migration
             $table->id('advisor_id');
             $table->string('advisor_name');
             $table->string('advisor_surname');
-            $table->string('advisor_email');
+            $table->string('advisor_email')->unique();
             $table->string('advisor_password');
             $table->string('advisor_phone_num');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

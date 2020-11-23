@@ -11,6 +11,15 @@ class Advisor extends Model
 
     protected $primaryKey = 'advisor_id';
 
+    protected $hidden = [
+        'advisor_password', 'remember_token',
+    ];
+
+    public function getHiddenAttributes()
+    {
+        return $this->getHidden();
+    }
+
     public function groups(){
         return $this->hasMany('App\Models\Group');
     }
