@@ -16,11 +16,14 @@ use \App\Http\Controllers\ManagerController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::resource('advisors', AdvisorController::class);
 Route::resource('managers', ManagerController::class);
+
+Route::post('/auth/manager-login', [\App\Http\Controllers\AuthorizationController::class, 'managerLogin']);
+Route::post('/auth/advisor-login', [\App\Http\Controllers\AuthorizationController::class, 'advisorLogin']);
 Route::resource('students', StudentController::class);
 Route::post('/register', StudentController::class);
