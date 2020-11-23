@@ -10,4 +10,15 @@ class Discipline extends Model
     use HasFactory;
 
     protected $primaryKey = 'discipline_id';
+
+    public function student_marks()
+    {
+        return $this->hasMany('App\Models\StudentMark');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
+
 }

@@ -10,4 +10,14 @@ class Student extends Model
     use HasFactory;
 
     protected $primaryKey = 'student_id';
+
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Group');
+    }
+
+    public function student_marks()
+    {
+        return $this->hasMany('App\Models\StudentMark');
+    }
 }

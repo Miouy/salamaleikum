@@ -10,4 +10,14 @@ class StudentMark extends Model
     use HasFactory;
 
     protected $primaryKey = 'student_mark_id';
+
+    public function student()
+    {
+        return $this->belongsTo('App\Models\Student');
+    }
+
+    public function discipline()
+    {
+        return $this->belongsTo('App\Models\Discipline');
+    }
 }
