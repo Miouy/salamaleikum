@@ -134,6 +134,7 @@ const routes = [
         component: Authorization,
         children: [
             {
+                name: 'StudentLogin',
                 path: '',
                 component: StudentLogin,
             },
