@@ -25,5 +25,5 @@ Route::resource('managers', ManagerController::class);
 
 Route::post('/auth/manager-login', [\App\Http\Controllers\AuthorizationController::class, 'managerLogin']);
 Route::post('/auth/advisor-login', [\App\Http\Controllers\AuthorizationController::class, 'advisorLogin']);
-Route::resource('students', StudentController::class);
-Route::post('/register', StudentController::class);
+
+

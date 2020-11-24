@@ -42,7 +42,7 @@ return [
         ],
 
         'manager' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'managers',
             'hash' => false,
         ],

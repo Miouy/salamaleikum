@@ -12,16 +12,16 @@ class AuthorizationController extends Controller
     public function managerLogin(Request $request){
         $request->validate([
             'manager_email' => ['required'],
-            'manager_password' => ['required']
+            'password' => ['required']
         ]);
 
-        if(Auth::attempt($request->only('manager_email', 'manager_password'))){
+        $credentials = $request->only('manager_email', 'password');
+
+        if(Auth::attempt($credentials)){
             return response()->json(Auth::user(), 200);
         }
 
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.']
-        ]);
+        throw new ValidationException("credentials are incorrect");
     }
 
     public function advisorLogin(Request $request){
@@ -34,9 +34,7 @@ class AuthorizationController extends Controller
             return response()->json(Auth::user(), 200);
         }
 
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.']
-        ]);
+        return response()->json("{email: 'error'}", 422);
     }
 
     public function logout()

@@ -1,5 +1,14 @@
 <template>
-    
+    <div>
+        <div>
+            <h1 class="auth-title">Authorization</h1>
+            <router-link to="/auth/">Login</router-link>
+            <router-link to="/auth/register">Register</router-link>
+            <router-link to="/auth/manager-login">Manager Login</router-link>
+            <router-link to="/auth/advisor-login">Advisor Login</router-link>
+        </div>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
@@ -8,6 +17,9 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .auth-title {
+        text-align: center;
+        font-family: monospace;
+    }
 </style>

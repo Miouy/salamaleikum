@@ -21,6 +21,9 @@ import SemesterISP from '../components/student/SemesterISP'
 import EnrollDisciolines from '../components/enroll_disciplines/EnrollDisciplines'
 import EditStudent from "../components/students_manager/EditStudent";
 import Authorization from "../views/Authorization";
+import StudentLogin from "../components/auth/StudentLogin";
+import StudentRegister from "../components/auth/StudentRegister";
+import ManagerLogin from "../components/auth/ManagerLogin";
 
 const routes = [
     // Specialties
@@ -138,6 +141,11 @@ const routes = [
                 path: 'register',
                 name: 'StudentRegister',
                 component: StudentRegister,
+            },
+            {
+                path: 'manager-login',
+                name: 'ManagerLogin',
+                component: ManagerLogin,
             }
         ]
     },
