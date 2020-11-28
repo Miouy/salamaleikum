@@ -48,13 +48,13 @@ return [
         ],
 
         'advisor' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'advisors',
             'hash' => false,
         ],
 
         'student' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'students',
             'hash' => false,
         ],
