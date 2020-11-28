@@ -55,8 +55,8 @@
 
 <script>
 
-import Student from "../../apis/Student";
-import Csrf from "../../apis/Csrf";
+import Student from "../../api/Student";
+import Csrf from "../../api/Csrf";
 
 export default {
     data(){
