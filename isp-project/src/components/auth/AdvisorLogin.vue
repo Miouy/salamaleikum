@@ -3,7 +3,7 @@
         <form>
             <div>
                 <label>Email</label>
-                <input type="email" v-model="form.email" name="email">
+                <input type="email" v-model="form.advisor_email" name="email">
             </div>
             <div>
                 <label>Password</label>
@@ -22,7 +22,7 @@
         data(){
             return {
                 form: {
-                    email: "",
+                    advisor_email: "",
                     password: "",
                 }
             }

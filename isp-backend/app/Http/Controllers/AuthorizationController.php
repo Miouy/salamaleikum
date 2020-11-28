@@ -29,14 +29,16 @@ class AuthorizationController extends Controller
     public function advisorLogin(Request $request){
         $request->validate([
             'advisor_email' => ['required'],
-            'advisor_password' => ['required']
+            'password' => ['required']
         ]);
 
-        if(Auth::guard('advisor')->attempt($request->only('advisor_email', 'advisor_password'))){
+        $credentials = $request->only('advisor_email', 'password');
+
+        if(Auth::guard('advisor')->attempt($credentials)){
             return response()->json(Auth::user(), 200);
         }
 
-        return response()->json("{email: 'error'}", 422);
+        throw new ValidationException("credentials are incorrect");
     }
 
     public function logout()

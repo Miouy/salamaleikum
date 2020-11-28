@@ -24,6 +24,7 @@ import Authorization from "../views/Authorization";
 import StudentLogin from "../components/auth/StudentLogin";
 import StudentRegister from "../components/auth/StudentRegister";
 import ManagerLogin from "../components/auth/ManagerLogin";
+import AdvisorLogin from "../components/auth/AdvisorLogin";
 
 const routes = [
     // Specialties
@@ -147,6 +148,11 @@ const routes = [
                 path: 'manager-login',
                 name: 'ManagerLogin',
                 component: ManagerLogin,
+            },
+            {
+                path: 'advisor-login',
+                name: 'AdvisorLogin',
+                component: AdvisorLogin,
             }
         ]
     },
