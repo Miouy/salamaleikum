@@ -2,8 +2,8 @@
     <div>
         <div>
             <h1 class="specialties-title">Specialties</h1>
-            <router-link to="/specialties/">All</router-link>
-            <router-link to="/specialties/add">Add</router-link>
+            <router-link to="/manager/specialties/">All</router-link>
+            <router-link to="/manager/specialties/add">Add</router-link>
         </div>
         <router-view></router-view>
     </div>
