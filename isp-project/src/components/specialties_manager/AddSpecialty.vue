@@ -21,6 +21,8 @@
 </template>
 
 <script>
+    import Api from "../../api/Api";
+
     export default {
         name: "AddSpecialty",
         data(){
@@ -41,7 +43,15 @@
                     this.specialty_code = '';
                     this.specialty_name = '';
                     this.specialty_courses_quantity = 0;
-                    this.$emit('add-new-specialty', newSpecialty);
+
+                    Api
+                        .post('/manager/specialties', newSpecialty)
+                        .then(() => {
+                            this.$router.push("/manager/specialties");
+                        })
+                        .catch(e => {
+                            alert(e);
+                        })
                 }
             }
         },

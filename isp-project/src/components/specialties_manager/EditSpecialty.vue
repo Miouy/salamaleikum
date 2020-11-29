@@ -21,31 +21,13 @@
 </template>
 
 <script>
+    import Api from "../../api/Api";
+
     export default {
         name: "EditSpecialty",
         data(){
             return {
                 specialtyId: this.$route.params.specialtyId,
-                specialties: [
-                    {
-                        specialty_id: 1,
-                        specialty_code: "CSSE",
-                        specialty_name: "Computer Science and Software Engineering",
-                        specialty_courses_quantity: 4
-                    },
-                    {
-                        specialty_id: 2,
-                        specialty_code: "IS",
-                        specialty_name: "Information systems",
-                        specialty_courses_quantity: 4
-                    },
-                    {
-                        specialty_id: 3,
-                        specialty_code: "CS",
-                        specialty_name: "Computer Science",
-                        specialty_courses_quantity: 4
-                    }
-                ],
                 specialty: {},
                 specialty_code: '',
                 specialty_name: '',
@@ -53,22 +35,36 @@
             }
         },
         created() {
-            let specialtyIndex = this.specialties.findIndex(s => s.specialty_id === Number.parseInt(this.specialtyId));
-            this.specialty = this.specialties[specialtyIndex];
-            this.specialty_code = this.specialty.specialty_code;
-            this.specialty_name = this.specialty.specialty_name;
-            this.specialty_courses_quantity = this.specialty.specialty_courses_quantity;
+            this.getSpecialty();
         },
         methods: {
+            getSpecialty(){
+                Api
+                    .get('/manager/specialties/' + this.specialtyId + '/edit')
+                    .then(data => {
+                        this.specialty = data.data;
+                        this.specialty_code = this.specialty.code;
+                        this.specialty_name = this.specialty.name;
+                        this.specialty_courses_quantity = this.specialty.courses_quantity;
+                    })
+            },
             saveSpecialty(){
                 if(this.specialty_code.trim() && this.specialty_name && this.specialty_courses_quantity){
                     const editedSpecialty = {
                         specialty_id: this.specialty.specialty_id,
-                        specialty_code: this.specialty_code,
-                        specialty_name: this.specialty_name,
-                        specialty_courses_quantity: this.specialty_courses_quantity,
+                        code: this.specialty_code,
+                        name: this.specialty_name,
+                        courses_quantity: this.specialty_courses_quantity,
                     }
-                    this.$emit('save-specialty', editedSpecialty);
+
+                    Api
+                        .put(`/manager/specialties/${this.specialtyId}`, editedSpecialty)
+                        .then(() => {
+                            this.$router.push('/manager/specialties');
+                        })
+                        .catch(e => {
+                            alert(e);
+                        })
                 }
             }
         },

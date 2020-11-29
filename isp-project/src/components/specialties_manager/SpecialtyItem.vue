@@ -1,8 +1,8 @@
 <template>
     <tr class="specialty-row">
-        <td>{{specialty.specialty_code}}</td>
-        <td>{{specialty.specialty_name}}</td>
-        <td>{{specialty.specialty_courses_quantity}}</td>
+        <td>{{specialty.code}}</td>
+        <td>{{specialty.name}}</td>
+        <td>{{specialty.courses_quantity}}</td>
         <td><button type="button" @click.prevent="goEdit">Edit</button></td>
     </tr>
 </template>
@@ -21,7 +21,7 @@
         },
         methods: {
             goEdit(){
-                this.$router.push({name: 'EditSpecialty', params: {specialtyId: this.specialty.specialty_id}});
+                this.$router.push({path: '/manager/specialties/' + this.specialty.specialty_id + '/edit', params: {specialtyId: this.specialty.specialty_id}});
             }
         }
     }

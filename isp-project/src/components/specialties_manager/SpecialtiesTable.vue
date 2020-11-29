@@ -1,6 +1,9 @@
 <template>
     <div>
-        <table class="specialties-table">
+        <div v-if="loading">
+            <h2 class="text-center">Loading...</h2>
+        </div>
+        <table class="specialties-table" v-else>
             <thead>
                 <tr>
                     <th>Code</th>
@@ -23,35 +26,36 @@
 
 <script>
     import SpecialtyItem from "./SpecialtyItem";
+    import Api from "../../api/Api";
 
     export default {
         name: "SpecialtiesTable",
         components: {
             SpecialtyItem,
         },
-        data(){
+        data() {
             return {
-                specialties: [
-                    {
-                        specialty_id: 1,
-                        specialty_code: "CSSE",
-                        specialty_name: "Computer Science and Software Engineering",
-                        specialty_courses_quantity: 4
-                    },
-                    {
-                        specialty_id: 2,
-                        specialty_code: "IS",
-                        specialty_name: "Information systems",
-                        specialty_courses_quantity: 4
-                    },
-                    {
-                        specialty_id: 3,
-                        specialty_code: "CS",
-                        specialty_name: "Computer Science",
-                        specialty_courses_quantity: 4
-                    }
-                ],
-                last_index: 4,
+                specialties: [],
+                loading: false,
+            }
+        },
+        watch: {
+            specialties(){
+
+            }
+        },
+        created() {
+            this.getSpecialties();
+        },
+        methods: {
+            getSpecialties(){
+                this.loading = true;
+
+                Api.get("/manager/specialties").then(data => {
+                    console.log(data);
+                    this.specialties = data.data;
+                    this.loading = false;
+                });
             }
         }
     }
