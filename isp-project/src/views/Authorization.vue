@@ -2,7 +2,7 @@
     <div>
         <div>
             <h1 class="auth-title">Authorization</h1>
-            <router-link to="/auth/">Login</router-link>
+            <router-link to="/auth/student-login">Student Login</router-link>
             <router-link to="/auth/register">Register</router-link>
             <router-link to="/auth/manager-login">Manager Login</router-link>
             <router-link to="/auth/advisor-login">Advisor Login</router-link>

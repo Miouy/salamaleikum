@@ -144,7 +144,7 @@ const routes = [
         children: [
             {
                 name: 'StudentLogin',
-                path: '',
+                path: 'student-login',
                 component: StudentLogin,
             },
             {

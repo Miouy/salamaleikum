@@ -31,64 +31,41 @@
 </template>
 
 <script>
+import Api from '../../api/Api';
+import Student from '../../api/Student'
 
 import DisciplineItem from './DisciplineItem'
 
 export default {
-    name: 'table',
+    name: 'DisciplineTable',
     data(){
         return{
-            disciplines: [
-                {
-                    discipline_code: 'Math 1203',
-                    discipline_name: 'Mathematics',
-                    discipline_type: 'Теоретическое Обучение',
-                    discipline_teacher: 'Карашбаева Ж.О.',
-                    semester: 1,
-                    num_credits: 5,
-                    mt_1: 99.5,
-                    mt_2: 100,
-                    exam: 90,
-                    final: 96,
-                    grade_name: 'A-',
-                    gpa:4
-                },
-                {
-                    discipline_code: 'Math 1203',
-                    discipline_name: 'Mathematics',
-                    discipline_type: 'Теоретическое Обучение',
-                    discipline_teacher: 'Карашбаева Ж.О.',
-                    semester: 1,
-                    num_credits: 5,
-                    mt_1: 99.5,
-                    mt_2: 100,
-                    exam: 90,
-                    final: 96,
-                    grade_name: 'A-',
-                    gpa:4
-                },
-                {
-                    discipline_code: 'Math 1203',
-                    discipline_name: 'Mathematics',
-                    discipline_type: 'Теоретическое Обучение',
-                    discipline_teacher: 'Карашбаева Ж.О.',
-                    semester: 1,
-                    num_credits: 5,
-                    mt_1: 99.5,
-                    mt_2: 100,
-                    exam: 90,
-                    final: 96,
-                    grade_name: 'A-',
-                    gpa:4
-                }
-            ],
+            disciplines: [],
+            student: null,
+            loadig:false,
         }
     },
     components:{
         DisciplineItem,
     },
-    methods:{
+    whatch:{
 
+    },
+    mounted(){
+        Student.auth().then(response => {
+            this.student = response.data;
+        });
+    },
+    methods:{
+        getDisciplines(){
+            this.loadig=true;
+
+            Api.get('').then(data =>{
+                console.log(data);
+                this.disciplines=data.data;
+                this.loadig=false;
+            })
+        }
     },
 }
 </script>

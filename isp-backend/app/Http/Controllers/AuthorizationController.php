@@ -46,6 +46,21 @@ class AuthorizationController extends Controller
         Auth::logout();
     }
 
+    public function studentLogin(Request $request){
+        $request->validate([
+            'student_id' => ['required'],
+            'password' => ['required']
+        ]);
+
+        $credentials = $request->only('student_id', 'password');
+
+        if(Auth::guard('student')->attempt($credentials)){
+            return response()->json(Auth::user(), 200);
+        }
+
+        throw new ValidationException("credentials are incorrect");
+    }
+
     public function studentRegister(Request $request){
         $request->validate([
             'student_name' => ['required'],

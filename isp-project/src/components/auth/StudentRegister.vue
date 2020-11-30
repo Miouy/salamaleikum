@@ -56,7 +56,6 @@
 <script>
 
 import Student from "../../api/Student";
-import Csrf from "../../api/Csrf";
 
 export default {
     data(){
@@ -77,16 +76,14 @@ export default {
     },
     methods:{
         register(){
-            Csrf.getCookie().then(() => {
-                Student.register(this.form)
-                .then(() => {
-                    this.$router.push({name: "StudentLogin"});
-                })
-                .catch(error => {
-                    if(error.response.status === 422){
-                        this.errors = error.response.data.errors;
-                    }
-                });
+            Student.register(this.form)
+            .then(() => {
+                this.$router.push({name: "StudentLogin"});
+            })
+            .catch(error => {
+                if(error.response.status === 422){
+                    this.errors = error.response.data.errors;
+                }
             });
         }
     }
