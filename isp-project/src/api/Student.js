@@ -18,5 +18,9 @@ export default{
         await Csrf.getCookie();
 
         return Api.post("/logout");
+    },
+
+    auth(){
+        return Api.get("/student");
     }
 };

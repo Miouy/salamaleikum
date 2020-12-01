@@ -61,6 +61,10 @@ class AuthorizationController extends Controller
         throw new ValidationException("credentials are incorrect");
     }
 
+    public function getAuthStudent(){
+        return response()->json(Auth::user(),200);
+    }
+
     public function studentRegister(Request $request){
         $request->validate([
             'student_name' => ['required'],

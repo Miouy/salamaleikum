@@ -77,7 +77,7 @@ const routes = [
             },
             //Disciplines
             {
-                path: 'disciplines',
+                path: '/disciplines',
                 name: 'Disciplines',
                 component: Disciplines,
                 children: [

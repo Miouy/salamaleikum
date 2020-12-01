@@ -51,9 +51,10 @@ export default {
     whatch:{
 
     },
-    mounted(){
+    created(){
         Student.auth().then(response => {
             this.student = response.data;
+            console.log(response.data);
         });
     },
     methods:{

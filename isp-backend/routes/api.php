@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AdvisorController;
 use \App\Http\Controllers\ManagerController;
 use \App\Http\Controllers\SpecialtyController;
+use \App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ use \App\Http\Controllers\SpecialtyController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('/student', [\App\Http\Controllers\AuthorizationController::class,'getAuthStudent']);
 
 Route::resource('advisors', AdvisorController::class);
 Route::resource('managers', ManagerController::class);
