@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'manager',
-        'passwords' => 'managers',
+        'guard' => 'student',
+        'passwords' => 'students',
     ],
 
     /*
@@ -36,21 +36,20 @@ return [
     */
 
     'guards' => [
-
         'manager' => [
-            'driver' => 'session',
+            'driver' => 'sanctum',
             'provider' => 'managers',
             'hash' => false,
         ],
 
         'advisor' => [
-            'driver' => 'session',
+            'driver' => 'token',
             'provider' => 'advisors',
             'hash' => false,
         ],
 
         'student' => [
-            'driver' => 'session',
+            'driver' => 'sanctum',
             'provider' => 'students',
             'hash' => false,
         ],
@@ -87,10 +86,6 @@ return [
             'model' => App\Models\Student::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

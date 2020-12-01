@@ -1,7 +1,7 @@
 <template>
     <tr class="group-row">
         <td>{{group.group_name}}</td>
-        <td>{{group.group_specialty.specialty_name}}</td>
+        <td>{{group.course_id}}</td>
         <td><button type="button" @click.prevent="goEdit">Edit</button></td>
     </tr>
 </template>
@@ -17,7 +17,7 @@
         },
         methods: {
             goEdit(){
-                this.$router.push({name: 'EditGroup', params: {groupId: this.group.group_id}});
+                this.$router.push({path: '/manager/groups/' + this.group.group_id + '/edit', params: {groupId: this.group.group_id}});
             }
         }
     }

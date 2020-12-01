@@ -7,11 +7,8 @@
             </div>
             <div class="group-field">
                 <label for="group_specialty">Group Specialty</label>
-                <select name="group_specialty" id="group_specialty" v-model="group_specialty.specialty_id" @change="setGroupValues">
-                    <option v-for="option in specialty_options"
-                            :key="option.specialty_id"
-                            :value="option.specialty_id"
-                    >{{ option.specialty_name }}</option>
+                <select name="group_specialty" id="group_specialty">
+
                 </select>
             </div>
             <div class="edit-button">
@@ -22,86 +19,31 @@
 </template>
 
 <script>
+    import Api from "../../api/Api";
+
     export default {
         name: "EditGroup",
         data(){
             return {
                 group: {},
                 group_name: '',
-                group_specialty: {},
+                specialty_id: 0,
                 groupId: this.$route.params.groupId,
-                groups: [
-                    {
-                        group_id: 1,
-                        group_name: "CSSE-1806K",
-                        group_specialty: {
-                            specialty_id: 2,
-                            specialty_code: "IS",
-                            specialty_name: "Information systems",
-                            specialty_courses_quantity: 4
-                        }
-                    },
-                    {
-                        group_id: 2,
-                        group_name: "CSSE-1806K",
-                        group_specialty: {
-                            specialty_id: 2,
-                            specialty_code: "IS",
-                            specialty_name: "Information systems",
-                            specialty_courses_quantity: 4
-                        }
-                    },
-                    {
-                        group_id: 3,
-                        group_name: "CSSE-1806K",
-                        group_specialty: {
-                            specialty_id: 2,
-                            specialty_code: "IS",
-                            specialty_name: "Information systems",
-                            specialty_courses_quantity: 4
-                        }
-                    }
-                ],
-                specialty_options: [
-                    {
-                        specialty_id: 1,
-                        specialty_code: "CSSE",
-                        specialty_name: "Computer Science and Software Engineering",
-                        specialty_courses_quantity: 4
-                    },
-                    {
-                        specialty_id: 2,
-                        specialty_code: "IS",
-                        specialty_name: "Information systems",
-                        specialty_courses_quantity: 4
-                    },
-                    {
-                        specialty_id: 3,
-                        specialty_code: "CS",
-                        specialty_name: "Computer Science",
-                        specialty_courses_quantity: 4
-                    }
-                ]
+                groups: [],
+                specialties: []
             }
         },
         created() {
-            let groupIndex = this.groups.findIndex(g => g.group_id === Number.parseInt(this.groupId));
-            if(groupIndex !== -1){
-                this.group = this.groups[groupIndex];
-                this.group_name = this.group.group_name;
-                this.group_specialty = this.group.group_specialty;
-                console.log(this.group_specialty)
-            }
+            this.getGroup();
         },
         methods: {
-            editGroup(){
-
-            },
-            setGroupValues(){
-                let specialtyIndex = this.specialty_options.findIndex(s => s.specialty_id === this.group_specialty.specialty_id);
-                if(specialtyIndex !== -1){
-                    this.group_specialty = this.specialty_options[specialtyIndex];
-                }
+            getGroup(){
+                Api
+                    .get("/manager/groups/" + this.groupId + '/edit')
+                    .then(data => {
+                        this.group = data.data;
+                        console.log(this.group);
+                    })
             }
         }
     }

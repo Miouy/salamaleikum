@@ -1,6 +1,9 @@
 <template>
     <div>
-        <table class="groups-table">
+        <div v-if="loading">
+            <h2 class="text-center">Loading...</h2>
+        </div>
+        <table class="groups-table" v-else>
             <thead>
             <tr>
                 <th>Name</th>
@@ -22,6 +25,7 @@
 
 <script>
     import GroupItem from "./GroupItem";
+    import Api from "../../api/Api";
 
     export default {
         name: "GroupsTable",
@@ -30,39 +34,22 @@
         },
         data(){
             return {
-                groups: [
-                    {
-                        group_id: 1,
-                        group_name: "CSSE-1806K",
-                        group_specialty: {
-                            specialty_id: 2,
-                            specialty_code: "IS",
-                            specialty_name: "Information systems",
-                            specialty_courses_quantity: 4
-                        }
-                    },
-                    {
-                        group_id: 2,
-                        group_name: "CSSE-1806K",
-                        group_specialty: {
-                            specialty_id: 2,
-                            specialty_code: "IS",
-                            specialty_name: "Information systems",
-                            specialty_courses_quantity: 4
-                        }
-                    },
-                    {
-                        group_id: 3,
-                        group_name: "CSSE-1806K",
-                        group_specialty: {
-                            specialty_id: 2,
-                            specialty_code: "IS",
-                            specialty_name: "Information systems",
-                            specialty_courses_quantity: 4
-                        }
-                    }
-                ],
-                last_index: 4,
+                groups: [],
+                loading: false,
+            }
+        },
+        created() {
+            this.getGroups();
+        },
+        methods: {
+            getGroups(){
+                this.loading = true;
+
+                Api.get("/manager/groups").then(data => {
+                    console.log(data);
+                    this.groups = data.data;
+                    this.loading = false;
+                });
             }
         }
     }

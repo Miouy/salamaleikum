@@ -39,11 +39,6 @@
                 loading: false,
             }
         },
-        watch: {
-            specialties(){
-
-            }
-        },
         created() {
             this.getSpecialties();
         },

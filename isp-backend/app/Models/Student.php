@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Student extends Model implements \Illuminate\Contracts\Auth\Authenticatable
+class Student extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable, HasApiTokens;
 
     protected $primaryKey = 'student_id';
 
@@ -23,53 +25,5 @@ class Student extends Model implements \Illuminate\Contracts\Auth\Authenticatabl
     public function student_marks()
     {
         return $this->hasMany('App\Models\StudentMark');
-    }
-
-    public function getHiddenAttributes()
-    {
-        return $this->getHidden();
-    }
-
-    public function getAuthIdentifierName()
-    {
-        // TODO: Implement getAuthIdentifierName() method.
-
-        return 'student_id';
-    }
-
-    public function getAuthIdentifier()
-    {
-        // TODO: Implement getAuthIdentifier() method.
-
-        return $this->getAttributeValue('student_id');
-    }
-
-    public function getAuthPassword()
-    {
-        // TODO: Implement getAuthPassword() method.
-
-        return $this->getAttributeValue('student_password');
-    }
-
-    public function getRememberToken()
-    {
-        // TODO: Implement getRememberToken() method.
-
-        return $this->getAttributeValue('remember_token');
-    }
-
-    public function setRememberToken($value)
-    {
-        // TODO: Implement setRememberToken() method.
-
-        $this->setAttribute('remember_token', $value);
-        $this->save();
-    }
-
-    public function getRememberTokenName()
-    {
-        // TODO: Implement getRememberTokenName() method.
-
-        return 'remember_token';
     }
 }

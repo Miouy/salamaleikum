@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advisor;
+use App\Models\Manager;
 use App\Models\Student;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
@@ -13,37 +15,37 @@ class AuthorizationController extends Controller
 
     public function managerLogin(Request $request){
         $request->validate([
-            'manager_email' => ['required'],
-            'password' => ['required']
+            'manager_email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        $credentials = $request->only('manager_email', 'password');
+        $manager = Manager::where('manager_email', $request->manager_email)->first();
 
-        if(Auth::attempt($credentials)){
-            return response()->json(Auth::user(), 200);
+        if(!$manager || !Hash::check($request->password, $manager->manager_password)) {
+            throw new ValidationException("credentials are incorrect");
         }
 
-        throw new ValidationException("credentials are incorrect");
+        return $manager->createToken($request->manager_email)->plainTextToken;
     }
 
     public function advisorLogin(Request $request){
         $request->validate([
-            'advisor_email' => ['required'],
+            'advisor_email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
-        $credentials = $request->only('advisor_email', 'password');
+        $advisor = Advisor::where('advisor_email', $request->advisor_email)->first();
 
-        if(Auth::guard('advisor')->attempt($credentials)){
-            return response()->json(Auth::user(), 200);
+        if(!$advisor || !Hash::check($request->password, $advisor->advisor_password)) {
+            throw new ValidationException("credentials are incorrect");
         }
 
-        throw new ValidationException("credentials are incorrect");
+        return $advisor->createToken($request->advisor_email)->plainTextToken;
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
+        $request->user()->tokens()->delete();
     }
 
     public function studentLogin(Request $request){
@@ -52,17 +54,13 @@ class AuthorizationController extends Controller
             'password' => ['required']
         ]);
 
-        $credentials = $request->only('student_id', 'password');
+        $student = Student::where('student_id', $request->student_id)->first();
 
-        if(Auth::guard('student')->attempt($credentials)){
-            return response()->json(Auth::user(), 200);
+        if(!$student || !Hash::check($request->password, $student->student_password)) {
+            throw new ValidationException("credentials are incorrect");
         }
 
-        throw new ValidationException("credentials are incorrect");
-    }
-
-    public function getAuthStudent(){
-        return response()->json(Auth::user(),200);
+        return $student->createToken($request->student_id)->plainTextToken;
     }
 
     public function studentRegister(Request $request){
