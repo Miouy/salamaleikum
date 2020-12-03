@@ -37,5 +37,7 @@ Route::prefix('manager')->group(function (){
     Route::resources([
         'specialties' => SpecialtyController::class,
         'groups' => GroupController::class,
+        'students' => StudentController::class,
+        'advisors' => AdvisorController::class,
     ]);
 });
