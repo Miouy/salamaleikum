@@ -36,11 +36,18 @@ class GroupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
         //
+        $group = new Group();
+        $group->setAttribute('group_name', $request->group_name);
+        $group->setAttribute('advisor_id', $request->advisor_id);
+        $group->setAttribute('course_id', $request->course_id);
+        $group->save();
+
+        return response()->json($request);
     }
 
     /**
@@ -71,13 +78,20 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
+        $group = Group::find($id);
+        $group->setAttribute('group_name', $request->group_name);
+        $group->setAttribute('advisor_id', $request->advisor_id);
+        $group->setAttribute('course_id', $request->course_id);
+        $group->save();
+
+        return response()->json($request);
     }
 
     /**
@@ -89,5 +103,6 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //
+        DB::table('groups')->delete($id);
     }
 }

@@ -100,5 +100,6 @@ class SpecialtyController extends Controller
     public function destroy($id)
     {
         //
+        DB::table('specialties')->delete($id);
     }
 }
