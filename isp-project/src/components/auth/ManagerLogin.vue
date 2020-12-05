@@ -39,10 +39,8 @@
         methods: {
             login() {
                 Manager.login(this.form)
-                    .then(() => {
-                        this.$root.$emit("login", true);
-                        localStorage.setItem("auth", true);
-                        this.$router.push({name: "Advisors"});
+                    .then(data => {
+                        localStorage.setItem("token", data.data);
                     })
                     .catch(error => {
                         if (error.response.status === 422) {
