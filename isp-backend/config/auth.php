@@ -36,8 +36,14 @@ return [
     */
 
     'guards' => [
+        'web' => [
+            'driver' => 'token',
+            'provider' => 'students',
+            'hash' => false,
+        ],
+
         'manager' => [
-            'driver' => 'sanctum',
+            'driver' => 'token',
             'provider' => 'managers',
             'hash' => false,
         ],
@@ -49,7 +55,7 @@ return [
         ],
 
         'student' => [
-            'driver' => 'sanctum',
+            'driver' => 'token',
             'provider' => 'students',
             'hash' => false,
         ],

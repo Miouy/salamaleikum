@@ -8,6 +8,7 @@ use App\Models\Student;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthorizationController extends Controller
@@ -46,6 +47,8 @@ class AuthorizationController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
+
+        return response()->json('logout', 201);
     }
 
     public function studentLogin(Request $request){
@@ -61,6 +64,13 @@ class AuthorizationController extends Controller
         }
 
         return $student->createToken($request->student_id)->plainTextToken;
+    }
+
+    public function getAuthorizedStudent(Request $request){
+        $name = DB::table('personal_access_tokens')->get('name')->where('token', $request->get('api_token'))->first();
+
+        $student = DB::table('students')->where('student_id', intval($name))->first();
+        return response()->json($student, 200);
     }
 
     public function studentRegister(Request $request){

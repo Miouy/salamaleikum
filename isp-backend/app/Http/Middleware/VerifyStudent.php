@@ -17,7 +17,7 @@ class VerifyStudent
      */
     public function handle($request, Closure $next)
     {
-        if (!(auth()->user() instanceof Student)) {
+        if (!($request->user('student') instanceof Student)) {
             abort(403);
         }
 
