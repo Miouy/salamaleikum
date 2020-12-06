@@ -34,6 +34,8 @@ Route::middleware(['auth:sanctum','advisor'])->get('/advisor', function(Request 
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->post('/logout', [AuthorizationController::class, 'logout']);
+
 Route::post('/auth/student-register', [AuthorizationController::class, 'studentRegister']);
 Route::post('/auth/student-login', [AuthorizationController::class, 'studentLogin']);
 Route::post('/auth/manager-login', [AuthorizationController::class, 'managerLogin']);
