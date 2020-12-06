@@ -22,8 +22,13 @@ class Student extends Authenticatable
         return $this->belongsTo('App\Models\Group');
     }
 
-    public function student_marks()
+    public function studentMarks()
     {
         return $this->hasMany('App\Models\StudentMark');
+    }
+
+    public function studentRequests()
+    {
+        return $this->hasMany('App\Models\StudentRequest');
     }
 }

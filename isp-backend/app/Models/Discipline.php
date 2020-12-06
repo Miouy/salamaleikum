@@ -16,9 +16,9 @@ class Discipline extends Model
         return $this->hasMany('App\Models\StudentMark');
     }
 
-    public function course()
+    public function semester()
     {
-        return $this->belongsTo('App\Models\Course');
+        return $this->belongsTo('App\Models\Semester');
     }
 
 }

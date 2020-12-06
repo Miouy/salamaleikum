@@ -14,4 +14,9 @@ class Course extends Model
     public function specialty(){
         return $this->belongsTo('App\Models\Specialty');
     }
+
+    public function semesters()
+    {
+        return $this->hasMany('App\Models\Semester');
+    }
 }
