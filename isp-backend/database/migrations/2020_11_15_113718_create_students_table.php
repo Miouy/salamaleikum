@@ -23,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('student_iin');
             $table->string('student_phone_num');
             $table->double('student_total_gpa');
+            $table->string('api_token', 60)->unique();
             $table->foreignId('group_id')->references('group_id')->on('groups')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();

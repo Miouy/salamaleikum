@@ -18,11 +18,11 @@ class CreateDisciplinesTable extends Migration
             $table->string('discipline_name');
             $table->integer('discipline_credit');
             $table->string('discipline_code');
-            $table->integer('discipline_semester');
             $table->string('discipline_type');
             $table->string('discipline_teacher');
             $table->boolean('discipline_is_elective');
-            $table->foreignId('course_id')->references('course_id')->on('courses')->onDelete('cascade');
+            $table->boolean('discipline_is_finished');
+            $table->foreignId('semester_id')->references('semester_id')->on('semesters')->onDelete('cascade');
             $table->timestamps();
         });
     }
