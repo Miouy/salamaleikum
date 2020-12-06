@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class SpecialtyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum','manager']);
+    }
+
     /**
      * Display a listing of the resource.
      *
