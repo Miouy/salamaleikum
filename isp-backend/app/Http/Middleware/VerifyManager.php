@@ -17,7 +17,7 @@ class VerifyManager
      */
     public function handle($request, Closure $next)
     {
-        if (!(auth()->user() instanceof Manager)) {
+        if (!($request->user() instanceof Manager)) {
             abort(403);
         }
 

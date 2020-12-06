@@ -61,7 +61,7 @@ export default {
         getDisciplines(){
             this.loadig=true;
 
-            Api.get('').then(data =>{
+            Api().get('/student/disciplines').then(data =>{
                 console.log(data);
                 this.disciplines=data.data;
                 this.loadig=false;

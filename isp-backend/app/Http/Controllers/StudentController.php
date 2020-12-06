@@ -15,7 +15,6 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
         $students = Student::all();
         return response()->json($students, 200);
     }
@@ -83,7 +82,7 @@ class StudentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -113,4 +112,16 @@ class StudentController extends Controller
         //
         DB::table('students')->delete($id);
     }
+
+    /*
+     * $student_marks = Student::find(id)->student_marks;
+
+        $disciplines =array();
+
+        foreach ($student_marks as $mark){
+            array_push($disciplines,$mark->discipline);
+        }
+
+        return response()->json($disciplines, 200);
+    */
 }

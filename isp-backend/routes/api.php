@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use \App\Http\Controllers\AdvisorController;
 use \App\Http\Controllers\ManagerController;
 use \App\Http\Controllers\SpecialtyController;
+use \App\Http\Controllers\DisciplineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,15 @@ use \App\Http\Controllers\SpecialtyController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/student', function(Request $request){
+Route::middleware(['auth:sanctum','student'])->get('/student', function(Request $request){
+    return $request->user();
+});
+
+Route::middleware(['auth:sanctum','manager'])->get('/manager', function(Request $request){
+    return $request->user();
+});
+
+Route::middleware(['auth:sanctum','advisor'])->get('/advisor', function(Request $request){
     return $request->user();
 });
 
@@ -36,5 +45,11 @@ Route::prefix('manager')->group(function (){
         'groups' => GroupController::class,
         'students' => StudentController::class,
         'advisors' => AdvisorController::class,
+    ]);
+});
+
+Route::prefix('student')->group(function (){
+    Route::resources([
+        'disciplines' => DisciplineController::class,
     ]);
 });

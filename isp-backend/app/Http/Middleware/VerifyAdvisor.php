@@ -17,7 +17,7 @@ class VerifyAdvisor
      */
     public function handle($request, Closure $next)
     {
-        if (!(auth()->user() instanceof Advisor)) {
+        if (!($request->user() instanceof Advisor)) {
             abort(403);
         }
 
