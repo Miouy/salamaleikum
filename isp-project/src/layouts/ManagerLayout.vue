@@ -68,10 +68,6 @@
                 align-items: center;
                 min-width: 300px;
             }
-
-            .profile {
-
-            }
         }
 
         .sidebar {

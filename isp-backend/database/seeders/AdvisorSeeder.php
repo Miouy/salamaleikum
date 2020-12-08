@@ -21,7 +21,8 @@ class AdvisorSeeder extends Seeder
             'advisor_surname' => Str::random(10),
             'advisor_email' => Str::random(10).'@gmail.com',
             'advisor_password' => Hash::make('password'),
-            'advisor_phone_num' => Str::random(10),
+            'advisor_phone_num' => Str::random(11),
         ]);
     }
 }
+

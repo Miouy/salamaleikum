@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthorizationController extends Controller
 {
@@ -87,6 +88,7 @@ class AuthorizationController extends Controller
         $student->student_phone_num =  $request->student_phone_num;
         $student->student_total_gpa =  $request->student_total_gpa;
         $student->group_id =  $request->group_id;
+        $student->api_token =  Str::random(10);
 
         $student->save();
 

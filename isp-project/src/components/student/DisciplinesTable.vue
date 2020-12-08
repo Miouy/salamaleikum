@@ -56,6 +56,8 @@ export default {
             this.student = response.data;
             console.log(response.data);
         });
+
+        this.getDisciplines();
     },
     methods:{
         getDisciplines(){

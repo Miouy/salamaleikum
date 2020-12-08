@@ -1,17 +1,16 @@
 <?php
 
-    use App\Http\Controllers\AdvisorClientController;
-    use App\Http\Controllers\AuthorizationController;
-    use App\Http\Controllers\CourseController;
-    use App\Http\Controllers\GroupController;
+use App\Http\Controllers\AdvisorClientController;
+use App\Http\Controllers\AdvisorController;
+use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SpecialtyController;
+use App\Http\Controllers\StudentClientController;
 use App\Http\Controllers\StudentController;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\DB;
-    use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\AdvisorController;
-use \App\Http\Controllers\ManagerController;
-use \App\Http\Controllers\SpecialtyController;
-use \App\Http\Controllers\DisciplineController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +65,9 @@ Route::prefix('advisor')->group(function (){
 });
 
 Route::prefix('student')->group(function (){
-    Route::resources([
-        'disciplines' => DisciplineController::class,
-    ]);
+    Route::get('/isp/{id}',[StudentClientController::class,'getSemesterDisciplines']);
+    Route::get('/retake/{id}',[StudentClientController::class,'getRetakesSum']);
+    Route::get('/getminpass/{id}',[StudentClientController::class,'getMinMarksPass']);
+    Route::get('/getminscholarship/{id}',[StudentClientController::class,'getMinMarksScholarship']);
+    Route::get('/getminhighscholarship/{id}',[StudentClientController::class,'getMinMarksHScholarship']);
 });
