@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthorizationController;
-use App\Http\Controllers\GroupController;
+    use App\Http\Controllers\AdvisorClientController;
+    use App\Http\Controllers\AuthorizationController;
+    use App\Http\Controllers\CourseController;
+    use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StudentController;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
@@ -36,10 +38,12 @@ Route::middleware(['auth:sanctum','advisor'])->get('/advisor', function(Request 
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthorizationController::class, 'logout']);
 
-Route::post('/auth/student-register', [AuthorizationController::class, 'studentRegister']);
-Route::post('/auth/student-login', [AuthorizationController::class, 'studentLogin']);
-Route::post('/auth/manager-login', [AuthorizationController::class, 'managerLogin']);
-Route::post('/auth/advisor-login', [AuthorizationController::class, 'advisorLogin']);
+Route::prefix('auth')->group(function (){
+    Route::post('/student-register', [AuthorizationController::class, 'studentRegister']);
+    Route::post('/student-login', [AuthorizationController::class, 'studentLogin']);
+    Route::post('/manager-login', [AuthorizationController::class, 'managerLogin']);
+    Route::post('/advisor-login', [AuthorizationController::class, 'advisorLogin']);
+});
 
 Route::prefix('manager')->group(function (){
     Route::resources([
@@ -47,7 +51,18 @@ Route::prefix('manager')->group(function (){
         'groups' => GroupController::class,
         'students' => StudentController::class,
         'advisors' => AdvisorController::class,
+        'courses' => CourseController::class,
+        'disciplines' => DisciplineController::class,
     ]);
+});
+
+Route::prefix('advisor')->group(function (){
+    Route::get('/groups', [AdvisorClientController::class, 'getAdvisorGroups']);
+    Route::get('/groups/{id}', [AdvisorClientController::class, 'getAdvisorGroupStudents']);
+    Route::get('/student-disciplines/{id}', [AdvisorClientController::class, 'getStudentDisciplines']);
+    Route::get('/student-requests/{id}', [AdvisorClientController::class, 'getStudentRequests']);
+    Route::post('/confirm-requests/{id}', [AdvisorClientController::class, 'confirmStudentRequests']);
+    Route::post('/reject-requests/{id}', [AdvisorClientController::class, 'rejectStudentRequests']);
 });
 
 Route::prefix('student')->group(function (){

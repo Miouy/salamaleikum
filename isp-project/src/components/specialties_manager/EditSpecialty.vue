@@ -39,7 +39,7 @@
         },
         methods: {
             getSpecialty(){
-                Api
+                Api()
                     .get('/manager/specialties/' + this.specialtyId + '/edit')
                     .then(data => {
                         this.specialty = data.data;
@@ -57,7 +57,7 @@
                         courses_quantity: this.specialty_courses_quantity,
                     }
 
-                    Api
+                    Api()
                         .put(`/manager/specialties/${this.specialtyId}`, editedSpecialty)
                         .then(() => {
                             this.$router.push('/manager/specialties');

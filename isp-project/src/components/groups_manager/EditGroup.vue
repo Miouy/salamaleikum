@@ -38,7 +38,7 @@
         },
         methods: {
             getGroup(){
-                Api
+                Api()
                     .get("/manager/groups/" + this.groupId + '/edit')
                     .then(data => {
                         this.group = data.data;

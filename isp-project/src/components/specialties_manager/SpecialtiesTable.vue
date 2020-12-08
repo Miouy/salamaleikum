@@ -46,7 +46,7 @@
             getSpecialties(){
                 this.loading = true;
 
-                Api.get("/manager/specialties").then(data => {
+                Api().get("/manager/specialties").then(data => {
                     console.log(data);
                     this.specialties = data.data;
                     this.loading = false;

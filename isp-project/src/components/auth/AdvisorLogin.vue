@@ -30,10 +30,8 @@
         methods: {
             login() {
                 Advisor.login(this.form)
-                    .then(() => {
-                        this.$root.$emit("login", true);
-                        localStorage.setItem("auth", true);
-                        this.$router.push({name: "Advisors"});
+                    .then(data => {
+                        localStorage.setItem("token", data.data);
                     })
                     .catch(error => {
                         console.log(error);

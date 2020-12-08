@@ -45,7 +45,7 @@
             getGroups(){
                 this.loading = true;
 
-                Api.get("/manager/groups").then(data => {
+                Api().get("/manager/groups").then(data => {
                     console.log(data);
                     this.groups = data.data;
                     this.loading = false;
