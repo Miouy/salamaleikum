@@ -20,4 +20,3 @@ const store = new Vuex.Store(
 
 const app = createApp(App);
 app.use(router).mount('#app');
-app.use(store).mount('#app');
