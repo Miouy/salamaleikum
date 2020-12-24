@@ -20,18 +20,19 @@ import StudentsTable from "../components/students_manager/StudentsTable";
 import SemesterISP from '../components/student/SemesterISP'
 import EnrollDisciolines from '../components/enroll_disciplines/EnrollDisciplines'
 import EditStudent from "../components/students_manager/EditStudent";
-import Authorization from "../views/Authorization";
 import StudentLogin from "../components/auth/StudentLogin";
 import StudentRegister from "../components/auth/StudentRegister";
 import ManagerLogin from "../components/auth/ManagerLogin";
 import AdvisorLogin from "../components/auth/AdvisorLogin";
 import ManagerLayout from "../layouts/ManagerLayout";
+import AuthLayout from "../layouts/AuthLayout";
 
 const routes = [
     {
         path: '/manager',
         name: 'Manager',
         component: ManagerLayout,
+        meta:{auth:'manager'},
         children: [
             // Specialties
             {
@@ -140,7 +141,7 @@ const routes = [
     {
         path: '/auth',
         name: 'Authorization',
-        component: Authorization,
+        component: AuthLayout,
         children: [
             {
                 name: 'StudentLogin',
@@ -168,6 +169,7 @@ const routes = [
     {
         path: '/isp',
         name: 'ISP',
+        meta:{auth:'student'},
         component: SemesterISP,
     },
     //EnrollDisciolines
@@ -182,5 +184,9 @@ let router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
+router.beforeEach((to,from,next) =>{
+    
+})
 
 export default router;

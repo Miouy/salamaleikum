@@ -10,13 +10,11 @@ use Illuminate\Http\Request;
 
 class StudentClientController extends Controller
 {
-    public function getSemesterDisciplines(int $id)
+    public function getStudentDisciplines(int $id)
     {
         $student = Student::find($id);
 
         $stud_marks = StudentMark::where(['student_id','=',$student->student_id]);
-
-        $course= $student->group->course;
 
         $disciplines_id=array();
 
