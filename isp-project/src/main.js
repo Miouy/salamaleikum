@@ -1,10 +1,10 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import router from "./router/router";
-import Vuex from "vuex"
 
-Vuex.use(Vuex);
-
+const app = createApp(App);
+app.use(router).mount('#app');
+/*
 const store = new Vuex.Store(
     {
         state: {
@@ -18,5 +18,4 @@ const store = new Vuex.Store(
     }
 )
 
-const app = createApp(App);
-app.use(router).mount('#app');
+ */

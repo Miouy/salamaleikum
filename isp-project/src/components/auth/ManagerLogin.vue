@@ -56,13 +56,8 @@
                 Manager.login(this.form)
                     .then(data => {
                         localStorage.setItem("token", data.data);
-                        this.$store.commit("setAuthentication",'manager');
+                        //this.$store.commit("setAuthentication",'manager');
                         this.$router.push('/manager');
-                    })
-                    .catch(error => {
-                        if (error.response.status === 422) {
-                            this.errors = error.response.data.errors;
-                        }
                     })
             }
         }

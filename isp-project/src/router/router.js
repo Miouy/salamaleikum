@@ -12,13 +12,13 @@ import DisciplinesTable from "../components/disciplines_manager/DisciplinesTable
 import AddDiscipline from "../components/disciplines_manager/AddDiscipline";
 import EditDiscipline from "../components/disciplines_manager/EditDiscipline";
 import Advisors from "../views/Advisors";
-import AdvisorsTable from "../components/advisors_manager/AdvisorsTable";
-import AddAdvisor from "../components/advisors_manager/AddAdvisor";
-import EditAdvisor from "../components/advisors_manager/EditAdvisor";
+import AdvisorsTable from "../components/courses_manager/CoursesTable";
+import AddAdvisor from "../components/courses_manager/AddCourse";
+import EditAdvisor from "../components/courses_manager/EditCourse";
 import Students from "../views/Students";
 import StudentsTable from "../components/students_manager/StudentsTable";
 import SemesterISP from '../components/student/SemesterISP'
-import EnrollDisciolines from '../components/enroll_disciplines/EnrollDisciplines'
+import EnrollDisciplines from '../components/enroll_disciplines/EnrollDisciplines'
 import EditStudent from "../components/students_manager/EditStudent";
 import StudentLogin from "../components/auth/StudentLogin";
 import StudentRegister from "../components/auth/StudentRegister";
@@ -26,13 +26,21 @@ import ManagerLogin from "../components/auth/ManagerLogin";
 import AdvisorLogin from "../components/auth/AdvisorLogin";
 import ManagerLayout from "../layouts/ManagerLayout";
 import AuthLayout from "../layouts/AuthLayout";
+import Courses from "../views/Courses";
+import CoursesTable from "../components/courses_manager/CoursesTable";
+import AddCourse from "../components/courses_manager/AddCourse";
+import EditCourse from "../components/courses_manager/EditCourse";
+import Semesters from "../views/Semesters";
+import SemestersTable from "../components/semesters_manager/SemestersTable";
+import AddSemester from "../components/semesters_manager/AddSemester";
+import EditSemester from "../components/semesters_manager/EditSemester";
 
 const routes = [
     {
         path: '/manager',
         name: 'Manager',
         component: ManagerLayout,
-        meta:{auth:'manager'},
+        meta: {auth: 'manager'},
         children: [
             // Specialties
             {
@@ -52,6 +60,46 @@ const routes = [
                         path: ':specialtyId/edit',
                         name: 'EditSpecialty',
                         component: EditSpecialty,
+                    }
+                ]
+            },
+            {
+                path: 'courses',
+                name: 'Courses',
+                component: Courses,
+                children: [
+                    {
+                        path: '',
+                        component: CoursesTable,
+                    },
+                    {
+                        path: 'add',
+                        component: AddCourse,
+                    },
+                    {
+                        path: ':courseId/edit',
+                        name: 'EditCourse',
+                        component: EditCourse,
+                    }
+                ]
+            },
+            {
+                path: 'semesters',
+                name: 'Semesters',
+                component: Semesters,
+                children: [
+                    {
+                        path: '',
+                        component: SemestersTable,
+                    },
+                    {
+                        path: 'add',
+                        component: AddSemester,
+                    },
+                    {
+                        path: ':semesterId/edit',
+                        name: 'EditSemester',
+                        component: EditSemester,
                     }
                 ]
             },
@@ -78,7 +126,7 @@ const routes = [
             },
             //Disciplines
             {
-                path: '/disciplines',
+                path: 'disciplines',
                 name: 'Disciplines',
                 component: Disciplines,
                 children: [
@@ -175,8 +223,8 @@ const routes = [
     //EnrollDisciolines
     {
         path: '/enroll',
-        name: 'EnrollDisciolines',
-        component: EnrollDisciolines,
+        name: 'EnrollDisciplines',
+        component: EnrollDisciplines,
     }
 ]
 
@@ -184,9 +232,9 @@ let router = createRouter({
     history: createWebHistory(),
     routes,
 });
-
+/*
 router.beforeEach((to,from,next) =>{
     
 })
-
+*/
 export default router;

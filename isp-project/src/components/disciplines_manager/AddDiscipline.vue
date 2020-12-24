@@ -22,14 +22,6 @@
                 <input id="discipline_semester" type="number" v-model="discipline_semester" min="1" max="2">
             </div>
             <div class="discipline-field">
-                <label for="discipline_year">Discipline Education Year</label>
-                <select name="discipline_year" id="discipline_year"  v-model="discipline_year">
-                    <option value="2018">2018-2019</option>
-                    <option value="2019">2019-2020</option>
-                    <option value="2020">2020-2021</option>
-                </select>
-            </div>
-            <div class="discipline-field">
                 <label for="discipline_credits">Discipline Credits Quantity</label>
                 <input id="discipline_credits" type="number" v-model="discipline_credits" min="0" max="10">
             </div>

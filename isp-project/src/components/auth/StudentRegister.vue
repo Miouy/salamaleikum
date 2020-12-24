@@ -5,7 +5,7 @@
         <div class="form">
             
             <div id="login">
-                <h1>Welcome Back</h1>
+                <h1>Welcome</h1>
                 <form>
                     <div class="form-row">
                         <div class="field-wrap">

@@ -1,29 +1,28 @@
 <template>
     <tr class="advisor-row">
-        <td>{{ advisor.advisor_id }}</td>
-        <td>{{ advisor.advisor_name }}</td>
-        <td>
-            <p v-for="group in advisor.advisor_groups" :key="group.group_id">{{group.group_name}}</p>
-        </td>
+        <td>{{ course.course_id }}</td>
+        <td>{{ course.course_name }}</td>
+        <td>{{ course.course_code }}</td>
+        <td>{{ course.course_education_year }}</td>
+        <td>{{ course.specialty_id }}</td>
         <td><button type="button" @click.prevent="goEdit">Edit</button></td>
     </tr>
 </template>
 
 <script>
     export default {
-        name: "AdvisorItem",
+        name: "CourseItem",
         props:{
-            advisor:{
+            course:{
                 type:Object,
                 required:true
             },
         },
         created() {
-            console.log(this.advisor.groups);
         },
         methods: {
             goEdit(){
-                this.$router.push({name: 'EditAdvisor', params: {advisorId: this.advisor.advisor_id}});
+                this.$router.push({path: '/manager/courses/' + this.course.course_id + '/edit', params: {courseId: this.course.course_id}});
             }
         }
     }

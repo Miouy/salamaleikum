@@ -2,8 +2,8 @@
     <div>
         <div>
             <h1 class="discipline-title">Disciplines</h1>
-            <router-link to="/disciplines/">All</router-link>
-            <router-link to="/disciplines/add">Add</router-link>
+            <router-link to="/manager/disciplines/">All</router-link>
+            <router-link to="/manager/disciplines/add">Add</router-link>
         </div>
         <router-view></router-view>
     </div>

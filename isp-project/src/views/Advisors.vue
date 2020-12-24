@@ -2,8 +2,8 @@
     <div>
         <div>
             <h1 class="advisors-title">Advisors</h1>
-            <router-link to="/advisors/">All</router-link>
-            <router-link to="/advisors/add">Add</router-link>
+            <router-link to="/manager/advisors/">All</router-link>
+            <router-link to="/manager/advisors/add">Add</router-link>
         </div>
         <router-view></router-view>
     </div>

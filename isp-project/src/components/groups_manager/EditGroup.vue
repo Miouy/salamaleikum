@@ -42,7 +42,8 @@
                     .get("/manager/groups/" + this.groupId + '/edit')
                     .then(data => {
                         this.group = data.data;
-                        console.log(this.group);
+                        this.group_name = this.group.group_name;
+                        this.specialty_id = this.group.specialty_id;
                     })
             }
         }

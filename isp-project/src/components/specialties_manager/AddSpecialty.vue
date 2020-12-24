@@ -44,7 +44,7 @@
                     this.specialty_name = '';
                     this.specialty_courses_quantity = 0;
 
-                    Api
+                    Api()
                         .post('/manager/specialties', newSpecialty)
                         .then(() => {
                             this.$router.push("/manager/specialties");

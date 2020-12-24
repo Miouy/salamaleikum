@@ -2,7 +2,7 @@
     <div>
         <div>
             <h1 class="students-title">Students</h1>
-            <router-link to="/students/">All</router-link>
+            <router-link to="/manager/students/">All</router-link>
         </div>
         <router-view></router-view>
     </div>

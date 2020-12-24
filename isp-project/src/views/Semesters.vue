@@ -1,9 +1,9 @@
 <template>
     <div>
         <div>
-            <h1 class="specialties-title">Specialties</h1>
-            <router-link to="/manager/specialties/">All</router-link>
-            <router-link to="/manager/specialties/add">Add</router-link>
+            <h1 class="specialties-title">Semesters</h1>
+            <router-link to="/manager/semesters/">All</router-link>
+            <router-link to="/manager/semesters/add">Add</router-link>
         </div>
         <router-view></router-view>
     </div>
@@ -12,7 +12,7 @@
 <script>
 
     export default {
-        name: "SpecialtiesComponent",
+        name: "SemestersComponent",
     }
 </script>
 

@@ -15,6 +15,12 @@
                     <router-link class="link" to="/manager/specialties">Specialties</router-link>
                 </div>
                 <div>
+                    <router-link class="link" to="/manager/courses">Courses</router-link>
+                </div>
+                <div>
+                    <router-link class="link" to="/manager/semesters">Semesters</router-link>
+                </div>
+                <div>
                     <router-link class="link" to="/manager/groups">Groups</router-link>
                 </div>
                 <div>

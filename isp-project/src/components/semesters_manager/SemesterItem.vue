@@ -1,42 +1,47 @@
 <template>
-    <tr class="specialty-row">
-        <td>{{specialty.code}}</td>
-        <td>{{specialty.name}}</td>
-        <td>{{specialty.courses_quantity}}</td>
-        <td>
-            <button type="button" @click.prevent="goEdit">Edit</button>
-        </td>
+    <tr class="advisor-row">
+        <td>{{ semester.semester_id }}</td>
+        <td>{{ semester.semester_name }}</td>
+        <td>{{ semester.semester_num }}</td>
+        <td>{{ semester.total_gpa }}</td>
+        <td>{{ semester.course_id }}</td>
+        <td><button type="button" @click.prevent="goEdit">Edit</button></td>
     </tr>
 </template>
 
 <script>
     export default {
-        name: "SpecialtyItem",
-        props: {
-            specialty: {
-                type: Object,
-                required: true,
-            }
+        name: "SemesterItem",
+        props:{
+            semester:{
+                type:Object,
+                required:true
+            },
         },
         created() {
-            console.log(this.specialty.specialty_id);
         },
         methods: {
             goEdit(){
-                this.$router.push({path: '/manager/specialties/' + this.specialty.specialty_id + '/edit', params: {specialtyId: this.specialty.specialty_id}});
+                this.$router.push({path: '/manager/semesters/' + this.course.semester_id + '/edit', params: {semesterId: this.course.semester_id}});
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .specialty-row {
+    .advisor-row {
         &:hover {
             color: #009879;
         }
 
         td {
             padding: 12px 15px;
+
+            p {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
 
             button {
                 color: #009879;
