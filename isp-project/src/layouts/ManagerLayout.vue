@@ -6,6 +6,7 @@
                 <h3 class="logo">Individual Study Plan</h3>
             </div>
             <div class="profile">
+                <a ></a>
                 <h3>Alikhan Ryskhan</h3>
             </div>
         </header>

@@ -65,7 +65,10 @@ Route::prefix('advisor')->group(function (){
 });
 
 Route::prefix('student')->group(function (){
-    Route::get('/isp/{id}',[StudentClientController::class,'getStudentDisciplines']);
+    Route::get('/isp/{id}/{cc}/{sc}',[StudentClientController::class,'getStudentDisciplines']);
+    Route::get('/specialties/{id}',[StudentClientController::class,'getStudentSpecialty']);
+    Route::get('/semester/{id}',[StudentClientController::class,'getStudentSemester']);
+    Route::get('/courseretake/{id}/{cc}',[StudentClientController::class,'getCourseRetakes']);
     Route::get('/retake/{id}',[StudentClientController::class,'getRetakesSum']);
     Route::get('/getminpass/{id}',[StudentClientController::class,'getMinMarksPass']);
     Route::get('/getminscholarship/{id}',[StudentClientController::class,'getMinMarksScholarship']);

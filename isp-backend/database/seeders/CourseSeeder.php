@@ -17,8 +17,8 @@ class CourseSeeder extends Seeder
     {
         DB::table('courses')->insert([
             'course_name' => Str::random(10),
-            'course_code' => Str::random(10),
-            'course_education_year' => Str::random(10),
+            'course_code' => 2,
+            'course_education_year' => '2020-2021',
             'specialty_id' => 1,
         ]);
     }

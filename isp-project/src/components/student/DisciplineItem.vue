@@ -1,17 +1,17 @@
 <template>
-    <tr class="discipline-row">
+    <tr class="discipline-row" v-if="student_mark!=null">
         <td>{{ discipline.discipline_code }}</td>
         <td>{{ discipline.discipline_name }}</td>
         <td>{{ discipline.discipline_type }}</td>
         <td>{{ discipline.discipline_teacher }}</td>
-        <td>{{ discipline.semester }}</td>
-        <td>{{ discipline.num_credits }}</td>
-        <td>{{ discipline.mt_1 }}</td>
-        <td>{{ discipline.mt_2 }}</td>
-        <td>{{ discipline.exam }}</td>
-        <td>{{ discipline.final }}</td>
-        <td>{{ discipline.grade_name }}</td>
-        <td>{{ discipline.gpa }}</td>
+        <td>{{ semestr }}</td>
+        <td>{{ discipline.discipline_credit }}</td>
+        <td>{{ student_mark.mt_1 }}</td>
+        <td>{{ student_mark.mt_2 }}</td>
+        <td>{{ student_mark.exam }}</td>
+        <td>{{ student_mark.final }}</td>
+        <td>{{ student_mark.grade_name }}</td>
+        <td>{{ student_mark.gpa }}</td>
     </tr>
 </template>
 
@@ -20,6 +20,18 @@ export default {
     props:{
         discipline:{
             type:Object,
+            required:true
+        },
+        specialty:{
+            type:Object,
+            required:true
+        },
+        student_mark:{
+            type:Object,
+            required:true
+        },
+        semestr:{
+            type:Number,
             required:true
         },
         index: Number

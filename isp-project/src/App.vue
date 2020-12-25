@@ -6,10 +6,14 @@
 
 <script>
 
+// import SemesterISP from './components/student/SemesterISP'
+// import EnrollDisciplines from './components/enroll_disciplines/EnrollDisciplines'
+
 export default {
   name: 'App',
   components: {
-    //AuthLayout
+    // SemesterISP,
+    // EnrollDisciplines
   }
 }
 

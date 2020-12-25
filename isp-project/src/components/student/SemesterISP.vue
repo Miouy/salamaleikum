@@ -10,24 +10,45 @@
             </ol>
         </div>
         <div>
-            <Dropdown title="Courses" :items="courses"/>
+            <Dropdown 
+                title="Courses" 
+                :specialty="specialty[0]"
+                @update-course="updateCourse"
+            />
         </div>
         <div style="margin:30px 0">
             <ul class="semester-nav">
                 <li class="one-semester">
-                    <a href="#" @click="table='DisciplinesTable'" :class="{'active':table=='DisciplinesTable'}">1 семестр</a>
+                    <a href="#" @click="table='1'" :class="{'active':table=='1'}">1 семестр</a>
                 </li>
                 <li class="one-semester">
-                    <a href="#" @click="table='DisciplinesTable2'" :class="{'active':table=='DisciplinesTable2'}">2 семестр</a>
+                    <a href="#" @click="table='2'" :class="{'active':table=='2'}">2 семестр</a>
                 </li>
                 <li class="one-semester">
-                    <a href="#" :class="{'active':table=='Retakes'}" @click="table='Retakes'">Летний семестр</a>
+                    <a href="#" :class="{'active':table=='3'}" @click="table='3'">Летний семестр</a>
                 </li>
             </ul>
         </div>
-        <DisciplinesTable v-if="table=='DisciplinesTable'"/>
-        <DisciplinesTable v-else-if="table=='DisciplinesTable2'"/>
-        <Retakes v-else-if="table=='Retakes'"/>
+        <DisciplinesTable 
+            v-model="curCurs"
+            v-if="table=='1'"
+            :table="table"
+            :specialty="specialty[0]"
+            :student="student"
+            v-bind:curCurs="curCurs"
+        />
+        <DisciplinesTable 
+            v-model="curCurs"
+            v-else-if="table=='2'"
+            :table="table"
+            :specialty="specialty[0]"
+            :student="student"    
+            v-bind:curCurs="curCurs"
+        />
+        <Retakes 
+            v-else-if="table=='3'"
+            :curCurs = "curCurs"
+        />
     </div>
 </template>
 
@@ -36,29 +57,16 @@
 import DisciplinesTable from './DisciplinesTable'
 import Retakes from './Retakes'
 import Dropdown from './Dropdown'
+  import Api from '../../api/Api'
+import Student from '../../api/Student'
 
 export default {
     data(){
         return{
-            table:'DisciplinesTable',
-            courses:[
-                {
-                    title:'1 курс',
-                    link:'#'
-                },
-                {
-                    title:'2 курс',
-                    link:'#'
-                },
-                {
-                    title:'3 курс',
-                    link:'#'
-                },
-                {
-                    title:'4 курс',
-                    link:'#'
-                },
-            ]
+            table:'1',
+            student:{},
+            specialty:{},
+            curCurs:1,
         }
     },
     components:{
@@ -66,9 +74,31 @@ export default {
         Retakes,
         Dropdown
     },
+    created(){
+        Student.auth().then(response => {
+            this.student = response.data;
+            this.getSpecialty();
+        });
+    },
     methods: {
         methodToRunOnSelect(payload) {
             this.object = payload;
+        },
+
+        getSpecialty(){
+
+            Api().get(`/student/specialties/${this.student.student_id}`).then(data =>{
+                this.specialty=data.data;
+                console.log(this.specialty);
+                console.log("dwdw");
+                this.loadig=false;
+            })
+        },
+
+        updateCourse(n){
+            this.curCurs = n;
+            console.log(this.curCurs);
+            
         }
     }
 }  

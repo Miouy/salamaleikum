@@ -23,7 +23,7 @@ class DisciplineSeeder extends Seeder
             'discipline_teacher' => Str::random(6),
             'discipline_is_elective' => rand(0,1),
             'discipline_is_finished' => rand(0,1),
-            'semester_id' => 1,
+            'semester_id' => 4,
         ]);
     }
 }

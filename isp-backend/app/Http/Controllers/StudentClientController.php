@@ -7,24 +7,87 @@ use App\Models\Semester;
 use App\Models\Student;
 use App\Models\StudentMark;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentClientController extends Controller
 {
-    public function getStudentDisciplines(int $id)
+    public function getStudentDisciplines(int $id,int $cc,int $sc)
     {
-        $student = Student::find($id);
+//        $disciplines = DB::table("disciplines")
+//            ->join('student_marks','disciplines.discipline_id','=','student_marks.discipline_id')
+//            ->where('student_marks.student_id',$id)->get();
 
-        $stud_marks = StudentMark::where(['student_id','=',$student->student_id]);
+//
+        $disciplines = DB::table("disciplines")
+            ->join('student_marks','disciplines.discipline_id','=','student_marks.discipline_id')
+            ->where('student_marks.student_id',$id)
+            ->join('semesters','disciplines.semester_id','=','semesters.semester_id')
+            ->where('semesters.semester_num',$sc)
+            ->join('courses','courses.course_id','=','semesters.course_id')
+            ->where('courses.course_code',$cc)
+            ->select('disciplines.*')
+            ->get();
 
-        $disciplines_id=array();
+        $disciplines_id = array();
 
-        foreach ($stud_marks as $mark){
-            $disciplines_id.array_push($mark->discipline_id);
+        foreach ($disciplines as $dis){
+            $id=$dis->discipline_id;
+            array_push($disciplines_id,$id);
         }
 
-        $disciplines = Discipline::find($disciplines_id);
+        $semester = DB::table("semesters")->where('semesters.semester_num',$sc)
+            ->join('courses','courses.course_id','=','semesters.course_id')
+            ->where('courses.course_code',$cc)
+            ->get();
 
-        return response()->json($disciplines,200);
+        $student_marks = DB::table("student_marks")->whereIn('student_marks.discipline_id',$disciplines_id)->get();
+//
+        return response()->json(['disciplines' => $disciplines,'student_marks'=>$student_marks,'semester'=>$semester],200);
+        //return response()->json(['student_requests' => $student_requests, 'discipline_requests' => $discipline_requests], 200);
+    }
+
+    public function getCourseRetakes($id,$cc){
+        $disciplines = DB::table("disciplines")
+            ->join('student_marks','disciplines.discipline_id','=','student_marks.discipline_id')
+            ->where('student_marks.student_id',$id)
+            ->where('student_marks.final','<',50)
+            ->join('semesters','disciplines.semester_id','=','semesters.semester_id')
+            ->join('courses','courses.course_id','=','semesters.course_id')
+            ->where('courses.course_code',$cc)
+            ->select('disciplines.*')
+            ->get();
+
+        $sum=0;
+
+        foreach ($disciplines as $dis){
+            $sum+=$dis->discipline_credit*21500;
+        }
+
+        $disciplines_id = array();
+
+        foreach ($disciplines as $dis){
+            $id=$dis->discipline_id;
+            array_push($disciplines_id,$id);
+        }
+
+        $student_marks = DB::table("student_marks")->whereIn('student_marks.discipline_id',$disciplines_id)->get();
+
+        return response()->json(['disciplines' => $disciplines,'student_marks'=>$student_marks,'retake_sum'=>$sum],200);
+    }
+
+
+    public function getStudentSpecialty(int $id)
+    {
+        $specialty = DB::table("specialties")
+            ->join('courses','specialties.specialty_id','=','courses.specialty_id')
+            ->join('groups','groups.course_id','=','courses.course_id')
+            ->join('students','groups.group_id','=','students.group_id')
+            ->where('students.student_id',$id)
+            ->get();
+
+
+        return response()->json($specialty,200);
+        //return response()->json(['student_requests' => $student_requests, 'discipline_requests' => $discipline_requests], 200);
     }
 
     public function getRetakesSum($id){

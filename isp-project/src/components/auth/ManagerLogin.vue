@@ -57,7 +57,8 @@
                     .then(data => {
                         localStorage.setItem("token", data.data);
                         //this.$store.commit("setAuthentication",'manager');
-                        this.$router.push('/manager');
+                        console.log(this.$store.authenticated)
+                        this.$router.push({name:"Manager"});
                     })
             }
         }

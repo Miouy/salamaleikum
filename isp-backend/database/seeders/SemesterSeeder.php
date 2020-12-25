@@ -17,7 +17,7 @@ class SemesterSeeder extends Seeder
     {
         DB::table('semesters')->insert([
             'semester_name' => Str::random(10),
-            'semester_num' => rand(1,2),
+            'semester_num' => 1,
             'total_gpa' => rand(0,4),
             'course_id' => 1,
         ]);

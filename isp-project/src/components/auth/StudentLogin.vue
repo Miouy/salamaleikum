@@ -57,6 +57,7 @@
                     .then(data => {
                         localStorage.setItem("token", data.data);
                         this.$store.commit("setAuthentication",'student');
+                        console.log(this.$store.authenticated)
                         this.$router.push({name: "ISP"});
                     })
                     .catch(error => {

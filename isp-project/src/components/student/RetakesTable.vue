@@ -21,10 +21,12 @@
                 <td colspan="100%" class="semester-title">1 курс летний семестр</td>
             </tr>
             <DisciplineItem
-                v-for="(discipline,index) in retakes"
+                v-for="(discipline,index) in disciplines"
                 :key="index"
-                :discipline=discipline
+                :discipline="discipline"
+                :student_mark="student_marks[index]"
                 :index=index
+                :semestr="3"
             />
         </tbody>
     </table>
@@ -42,14 +44,27 @@ export default {
         }
     },
     props:{
-        retakes:Array,
-        
+        student:{
+            type:Object,
+            required:true,
+        },
+        disciplines:{
+            type:Array,
+            required:true
+        },
+        student_marks:{
+            type:Array,
+            required:true
+        },
     },
     components:{
         DisciplineItem,
     },
     methods:{
-
+        
+    },
+    created(){
+        
     },
 }
 </script>

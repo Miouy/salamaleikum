@@ -1,6 +1,10 @@
 <template>
     <div>
-        <RetakesTable :retakes="disciplines"/>
+        <RetakesTable 
+            :disciplines="disciplines"
+            :student_marks="student_marks"
+            :student="student"
+        />
         <div class="retakes-info">
             <div class="info-block">
                 <span class="title">Retake cost:</span>
@@ -24,68 +28,59 @@
 <script>
 
 import RetakesTable from './RetakesTable'
+import Api from '../../api/Api';
+import Student from '../../api/Student'
 
 export default {
     data(){
         return{
-            disciplines: [
-                {
-                    discipline_code: 'AP 1206',
-                    discipline_name: 'Algorithmization and Programming',
-                    discipline_type: 'Теоретическое Обучение',
-                    discipline_teacher: 'Хаймульдин А.Г.',
-                    semester: 1,
-                    num_credits:7,
-                    mt_1: 94,
-                    mt_2: 98,
-                    exam: 89.33,
-                    final: 	93,
-                    grade_name: 'A-',
-                    gpa:3.67
-                },
-                {
-                    discipline_code: 'Math 1203',
-                    discipline_name: 'Mathematics',
-                    discipline_type: 'Теоретическое Обучение',
-                    discipline_teacher: 'Карашбаева Ж.О.',
-                    semester: 1,
-                    num_credits: 5,
-                    mt_1: 99.5,
-                    mt_2: 100,
-                    exam: 90,
-                    final: 96,
-                    grade_name: 'A',
-                    gpa:4
-                },
-                {
-                    discipline_code: 'AP 1206',
-                    discipline_name: 'Algorithmization and Programming',
-                    discipline_type: 'Теоретическое Обучение',
-                    discipline_teacher: 'Хаймульдин А.Г.',
-                    semester: 1,
-                    num_credits:7,
-                    mt_1: 94,
-                    mt_2: 98,
-                    exam: 89.33,
-                    final: 	93,
-                    grade_name: 'A-',
-                    gpa:3.67
-                },
-            ],
+            student:{},
+            disciplines:[],
+            retake_sum:0,
+            student_marks:[],
             retake_cost:21500,
         }
+    },
+    props:{
+        curCurs:{
+            type:Number,
+            required:true,
+        },
     },
     components:{
         RetakesTable
     },
+    created(){
+        Student.auth().then(response => {
+            this.student = response.data;
+            console.log(this.student);
+            this.getDisciplines();
+            //this.getSemester();
+        });
+    },
     methods:{
+
+        getDisciplines(){
+            this.loadig=true;
+        
+            console.log('ss');
+
+            Api().get(`/student/courseretake/${this.student.student_id}/${this.curCurs}`).then(data =>{
+                console.log(data);
+                this.disciplines=data.data.disciplines;
+                this.student_marks=data.data.student_marks;
+                this.retake_sum=data.data.retake_sum;
+                console.log(this.disciplines[0]);
+            })
+        },
+
         retakeCost(index){
-            return this.disciplines[index].num_credits*this.retake_cost;
+            return this.disciplines[index].discipline_credit*this.retake_cost;
         },
         totalPrice(){
             var c=0;
             for (var i = 0; i < this.disciplines.length; i++) {
-                c+=this.disciplines[i].num_credits*this.retake_cost;
+                c+=this.disciplines[i].discipline_credit*this.retake_cost;
             }
             return c;
         }

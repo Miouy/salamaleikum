@@ -18,13 +18,15 @@
         </thead>
         <tbody>
             <tr>
-                <td colspan="100%" class="semester-title">Autumn 2018-2019</td>
+                <td colspan="100%" class="semester-title" v-if="semestr[0]">{{semestr[0].semester_name}}</td>
             </tr>
             <DisciplineItem
                 v-for="(discipline,index) in disciplines"
                 :key="index"
                 :discipline=discipline
+                :student_mark="student_marks[index]"
                 :index=index
+                :semestr="semestr[0].semester_num"
             />
         </tbody>
     </table>
@@ -38,11 +40,27 @@ import DisciplineItem from './DisciplineItem'
 
 export default {
     name: 'DisciplineTable',
+    props:{
+        table:{
+            type:String,
+            required:true,
+        },
+        specialty:{
+            type:Object,
+            required:true,
+        },
+        curCurs:{
+            type:Number,
+            required:true,
+        },
+    },
     data(){
         return{
             disciplines: [],
-            student: null,
+            student_marks: [],
             loadig:false,
+            semestr:{},
+            student:{},
         }
     },
     components:{
@@ -54,21 +72,27 @@ export default {
     created(){
         Student.auth().then(response => {
             this.student = response.data;
-            console.log(response.data);
+            console.log(this.student);
+            this.getDisciplines();
+            //this.getSemester();
         });
-
-        this.getDisciplines();
     },
+    
     methods:{
         getDisciplines(){
             this.loadig=true;
+        
+            console.log('ss');
 
-            Api().get('/student/disciplines').then(data =>{
+            Api().get(`/student/isp/${this.student.student_id}/${this.curCurs}/${this.table}`).then(data =>{
                 console.log(data);
-                this.disciplines=data.data;
+                this.disciplines=data.data.disciplines;
+                this.student_marks=data.data.student_marks;
+                this.semestr=data.data.semester;
                 this.loadig=false;
             })
-        }
+        },
+
     },
 }
 </script>
